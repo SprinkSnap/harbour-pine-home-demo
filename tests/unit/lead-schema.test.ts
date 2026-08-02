@@ -11,7 +11,7 @@ describe('portfolio lead schema', () => {
       existingWebsite: 'https://example.com',
       productCount: '26–100',
       primaryGoal: 'Launch a new online store',
-      neededFeatures: ['Product variants', 'Search and filtering'],
+      neededFeatures: ['Mobile responsive conversion & SEO', 'Product variants', 'Search and filtering'],
       launchTiming: '1–2 months',
       message: 'Looking for a calm storefront.',
       consent: true,

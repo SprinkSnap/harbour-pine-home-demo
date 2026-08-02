@@ -205,6 +205,7 @@ export const primaryGoals = [
 ] as const;
 
 export const storeFeatures = [
+  'Mobile responsive conversion & SEO',
   'Product variants',
   'Search and filtering',
   'Subscriptions',
@@ -214,6 +215,9 @@ export const storeFeatures = [
   'Custom checkout logic',
   'Analytics and CRO',
 ] as const;
+
+/** Featured option shown first with a Recommended badge in the enquiry form. */
+export const recommendedStoreFeature = storeFeatures[0];
 
 export const launchTimingOptions = [
   'ASAP',
