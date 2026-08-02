@@ -21,10 +21,11 @@
     "test:watch": "vitest",
     "test:e2e": "playwright test",
     "test:a11y": "playwright test tests/e2e/a11y.spec.ts",
-    "deploy": "npm run build && wrangler deploy",
-    "deploy:staging": "npm run build && wrangler deploy --env staging",
+    "deploy": "npm run build && wrangler deploy && npm run db:remote",
+    "deploy:staging": "npm run build && wrangler deploy --env staging && npm run db:remote -- --env staging",
     "cf:dry-run": "npm run build && wrangler deploy --dry-run",
-    "db:local": "wrangler d1 migrations apply harbour-pine-leads --local",
+    "db:local": "wrangler d1 migrations apply DB --local",
+    "db:remote": "wrangler d1 migrations apply DB --remote",
     "audit": "npm audit --omit=dev"
   },
   "dependencies": {

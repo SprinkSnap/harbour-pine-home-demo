@@ -5,7 +5,8 @@
 - [ ] `DEMO_MODE=true` confirmed for the fictional portfolio
 - [ ] No real credentials committed
 - [ ] `.dev.vars` excluded from git
-- [ ] D1 `database_id` replaced with the real database id
+- [ ] D1 auto-provisioned on first deploy (or real `database_id` written back into `wrangler.jsonc`)
+- [ ] Remote D1 migrations applied (`npm run db:remote` / deploy script)
 - [ ] Turnstile site/secret keys configured
 - [ ] `ALLOWED_ORIGINS` matches staging/production hosts
 - [ ] `PUBLIC_SITE_URL` matches the intended host

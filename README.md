@@ -83,25 +83,29 @@ When `DEMO_MODE=false`:
 1. Create Workers project names:
    - production: `harbour-pine-home-demo`
    - staging: `harbour-pine-home-demo-staging`
-2. Create D1 database `harbour-pine-leads` and replace `database_id` in `wrangler.jsonc`
-3. Apply migrations: `wrangler d1 migrations apply harbour-pine-leads --remote`
+2. First deploy auto-provisions D1 `harbour-pine-leads` (no placeholder `database_id` required)
+3. `npm run deploy` applies D1 migrations remotely after deploy
 4. Configure Turnstile keys as secrets/vars
 5. Bind custom domain `harbourandpinehome.chexustudio.com` only with owner authorization
 6. Optional: bind Workers AI for the assistant endpoint
 
 ## D1 migrations
 
-SQL lives in `migrations/`. Local:
+SQL lives in `migrations/`. The Wrangler config intentionally omits `database_id` so Cloudflare can **auto-provision** the `harbour-pine-leads` D1 database on first deploy (the previous placeholder UUID caused deploy failures).
+
+Local:
 
 ```bash
-npx wrangler d1 migrations apply harbour-pine-leads --local
+npm run db:local
 ```
 
 Remote (authorized environments only):
 
 ```bash
-npx wrangler d1 migrations apply harbour-pine-leads --remote
+npm run db:remote
 ```
+
+`npm run deploy` applies remote migrations after `wrangler deploy`. If CI write-back does not persist the provisioned UUID into `wrangler.jsonc`, remote commands resolve the database by `database_name`.
 
 ## Turnstile
 

@@ -16,4 +16,5 @@ TURNSTILE_SECRET_KEY=
 STRIPE_SECRET_KEY=
 STRIPE_WEBHOOK_SECRET=
 
-# D1 is configured in wrangler.jsonc (replace database_id before production use)
+# D1 binding DB / harbour-pine-leads is configured in wrangler.jsonc without
+# database_id so Cloudflare can auto-provision it on first deploy.
