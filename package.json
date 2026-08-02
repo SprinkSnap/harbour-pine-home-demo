@@ -1,0 +1,58 @@
+{
+  "name": "harbour-pine-home-demo",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Harbour & Pine Home — fictional e-commerce portfolio demonstration by Che Xu Studio",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "generate-types": "wrangler types",
+    "check": "astro check && tsc --noEmit",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test",
+    "test:a11y": "playwright test tests/e2e/a11y.spec.ts",
+    "cf:dry-run": "npm run build && wrangler deploy --dry-run",
+    "db:local": "wrangler d1 migrations apply harbour-pine-leads --local",
+    "audit": "npm audit --omit=dev"
+  },
+  "dependencies": {
+    "@astrojs/cloudflare": "^14.1.7",
+    "@astrojs/react": "^6.0.2",
+    "@tailwindcss/vite": "^4.3.3",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.4",
+    "astro": "^7.1.6",
+    "nanoid": "^5.1.5",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "tailwindcss": "^4.3.3",
+    "wrangler": "^4.118.0",
+    "zod": "^4.0.14"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "@axe-core/playwright": "^4.10.2",
+    "@cloudflare/workers-types": "^5.20260801.1",
+    "@eslint/js": "^9.32.0",
+    "@playwright/test": "^1.54.2",
+    "@types/node": "^26.1.2",
+    "@vitest/coverage-v8": "^3.2.4",
+    "axe-core": "^4.10.3",
+    "eslint": "^9.32.0",
+    "prettier": "^3.6.2",
+    "prettier-plugin-astro": "^0.14.1",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.38.0",
+    "vitest": "^3.2.4"
+  }
+}

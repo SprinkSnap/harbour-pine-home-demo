@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-label="Riverstone Ceramic Vase">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#F7F3EC"/>
+      <stop offset="55%" stop-color="#E8DDCC"/>
+      <stop offset="100%" stop-color="#FFFEFB"/>
+    </linearGradient>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="24" flood-color="#102820" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <circle cx="980" cy="180" r="160" fill="#9EAF9D" opacity="0.22"/>
+  <circle cx="180" cy="980" r="200" fill="#285B68" opacity="0.12"/>
+  <g filter="url(#soft)">
+    <path d="M520 260 C620 260,680 340,680 430 C680 560,640 720,600 820 L600 880 L500 880 L500 820 C460 720,420 560,420 430 C420 340,480 260,520 260 Z" fill="#9EAF9D"/>
+     <ellipse cx="550" cy="270" rx="55" ry="22" fill="#FFFEFB" opacity="0.7"/>
+     <path d="M560 220 C575 180,590 150,595 120" stroke="#173B32" stroke-width="10" fill="none" stroke-linecap="round"/>
+  </g>
+</svg>

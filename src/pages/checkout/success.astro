@@ -1,0 +1,32 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { siteConfig } from '../../data/site';
+---
+
+<BaseLayout
+  title="Checkout Demo Complete"
+  description="You’ve completed the Harbour & Pine checkout demonstration."
+  path="/checkout/success/"
+>
+  <section class="section-space pt-8">
+    <div class="container-page max-w-3xl">
+      <div class="surface rounded-[var(--radius-xl)] p-8">
+        <p class="eyebrow">Demo complete</p>
+        <h1 class="mt-2 font-display text-4xl text-pine-dark">
+          You’ve completed the Harbour & Pine checkout demonstration.
+        </h1>
+        <p class="mt-4 text-charcoal/80">
+          This page confirms a portfolio demonstration only. No order, shipment or payment was created.
+        </p>
+        <p class="mt-4 font-semibold text-pine-dark">Want a shopping experience like this for your business?</p>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <button type="button" class="btn btn-clay" data-open-enquiry>Build My Online Store</button>
+          <a href={siteConfig.caseStudyUrl} class="btn btn-secondary" target="_blank" rel="noopener noreferrer">
+            View the Case Study
+          </a>
+          <a href="/shop/" class="btn btn-ghost">Restart Demo</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

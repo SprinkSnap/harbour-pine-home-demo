@@ -1,0 +1,26 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+---
+
+<BaseLayout
+  title="Accessibility"
+  description="Accessibility commitments for the Harbour & Pine Home demonstration storefront by Che Xu Studio."
+  path="/accessibility/"
+>
+  <section class="section-space pt-8">
+    <div class="container-page max-w-3xl">
+      <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Accessibility' }]} />
+      <h1 class="mt-4 font-display text-4xl text-pine-dark">Accessibility</h1>
+      <div class="mt-6 space-y-4 text-charcoal/85">
+        <p>
+          This demonstration aims to meet WCAG 2.2 AA as closely as practical, including keyboard access, visible focus,
+          semantic structure, status announcements and reduced-motion support.
+        </p>
+        <p>
+          If you encounter a barrier while reviewing this portfolio concept, contact Che Xu Studio through the enquiry form so it can be addressed in future iterations.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

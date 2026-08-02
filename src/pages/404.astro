@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Page Not Found"
+  description="The requested page was not found in the Harbour & Pine Home demonstration."
+  path="/404/"
+  noindex={true}
+>
+  <section class="section-space pt-8">
+    <div class="container-page max-w-2xl">
+      <div class="surface rounded-[var(--radius-xl)] p-8">
+        <p class="eyebrow">404</p>
+        <h1 class="mt-2 font-display text-4xl text-pine-dark">This page is not in the collection.</h1>
+        <p class="mt-4 text-charcoal/80">
+          The link may be outdated, or the page may not exist in this demonstration.
+        </p>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href="/" class="btn btn-primary">Back home</a>
+          <a href="/shop/" class="btn btn-secondary">Browse shop</a>
+          <a href="/search/" class="btn btn-ghost">Search products</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

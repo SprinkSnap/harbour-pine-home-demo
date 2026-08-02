@@ -1,0 +1,91 @@
+---
+import '../styles/global.css';
+import DemoDisclosure from '../components/DemoDisclosure.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import AppShell from '../components/react/AppShell';
+import AiAssistant from '../components/react/AiAssistant';
+import { siteConfig } from '../data/site';
+import { isDemoMode } from '../lib/demo-mode';
+import { absoluteUrl, buildTitle, resolveRobots, websiteJsonLd } from '../lib/seo';
+
+interface Props {
+  title: string;
+  description: string;
+  path?: string;
+  ogImage?: string;
+  noindex?: boolean;
+  jsonLd?: Record<string, unknown> | Array<Record<string, unknown>>;
+}
+
+const {
+  title,
+  description,
+  path = Astro.url.pathname,
+  ogImage = '/images/brand/og.svg',
+  noindex = false,
+  jsonLd = [],
+} = Astro.props;
+
+const demoMode = isDemoMode(import.meta.env.DEMO_MODE ?? 'true');
+const siteUrl = import.meta.env.PUBLIC_SITE_URL ?? siteConfig.demoDomain;
+const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? '';
+const pageTitle = buildTitle(title);
+const canonical = absoluteUrl(path, siteUrl);
+const robots = resolveRobots(demoMode, noindex);
+const schemas = [websiteJsonLd(siteUrl), ...(Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : [])].filter(
+  Boolean,
+);
+---
+
+<!doctype html>
+<html lang="en-CA">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content={robots} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_CA" />
+    <meta property="og:site_name" content={siteConfig.name} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={absoluteUrl(ogImage, siteUrl)} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={absoluteUrl(ogImage, siteUrl)} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Source+Sans+3:wght@400;550;650;700&display=swap"
+      rel="stylesheet"
+    />
+    {
+      schemas.map((schema) => (
+        <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+      ))
+    }
+    {
+      turnstileSiteKey ? (
+        <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+      ) : null
+    }
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <AppShell client:load turnstileSiteKey={turnstileSiteKey} />
+    <DemoDisclosure />
+    <Header />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+    <AiAssistant client:idle />
+  </body>
+</html>

@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+---
+
+<BaseLayout
+  title="Privacy"
+  description="Privacy information for the Harbour & Pine Home demonstration and Che Xu Studio lead capture."
+  path="/privacy/"
+>
+  <section class="section-space pt-8">
+    <div class="container-page max-w-3xl">
+      <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Privacy' }]} />
+      <h1 class="mt-4 font-display text-4xl text-pine-dark">Privacy</h1>
+      <p class="mt-4 rounded-md bg-sand/70 px-3 py-2 text-sm">
+        Illustrative policy for a fictional portfolio store. A real merchant must provide and approve its own terms.
+      </p>
+      <div class="mt-6 space-y-4 text-charcoal/85">
+        <p>
+          Demo cart, wishlist and fictional checkout values are stored locally in your browser and are not transmitted as orders.
+        </p>
+        <p>
+          The Che Xu Studio enquiry form is the only genuine lead-capture path. Submitted enquiry data is processed to respond to store-planning requests and protected with validation, Turnstile, rate limiting and prepared database statements.
+        </p>
+        <p>
+          Anonymous analytics events do not include names, emails, addresses, raw search text with personal information, or checkout entries.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

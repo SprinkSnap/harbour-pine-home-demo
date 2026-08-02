@@ -1,0 +1,62 @@
+---
+import { footerLinks, siteConfig } from '../data/site';
+import Logo from './Logo.astro';
+---
+
+<footer class="mt-16 border-t border-sand bg-pine-dark text-porcelain">
+  <div class="container-page grid gap-10 py-12 md:grid-cols-[1.2fr_1fr_1fr_1fr]">
+    <div>
+      <Logo class="[&_span]:text-sand [&_.text-harbour]:text-sage" />
+      <p class="mt-4 max-w-sm text-sm text-sand/90">
+        {siteConfig.portfolioNotice}
+      </p>
+      <button type="button" class="btn btn-clay mt-5" data-open-enquiry>
+        Build a Store Like This
+      </button>
+    </div>
+    <div>
+      <h2 class="text-sm font-semibold uppercase tracking-[0.08em] text-sage">Shop</h2>
+      <ul class="mt-3 space-y-2 text-sm">
+        {footerLinks.shop.map((link) => (
+          <li><a class="hover:underline" href={link.href}>{link.label}</a></li>
+        ))}
+      </ul>
+    </div>
+    <div>
+      <h2 class="text-sm font-semibold uppercase tracking-[0.08em] text-sage">Help</h2>
+      <ul class="mt-3 space-y-2 text-sm">
+        {footerLinks.help.map((link) => (
+          <li><a class="hover:underline" href={link.href}>{link.label}</a></li>
+        ))}
+        {footerLinks.legal.map((link) => (
+          <li><a class="hover:underline" href={link.href}>{link.label}</a></li>
+        ))}
+      </ul>
+    </div>
+    <div>
+      <h2 class="text-sm font-semibold uppercase tracking-[0.08em] text-sage">Che Xu Studio</h2>
+      <ul class="mt-3 space-y-2 text-sm">
+        {
+          footerLinks.studio.map((link) => (
+            <li>
+              <a
+                class="hover:underline"
+                href={link.href}
+                target={'external' in link && link.external ? '_blank' : undefined}
+                rel={'external' in link && link.external ? 'noopener noreferrer' : undefined}
+              >
+                {link.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+  <div class="border-t border-white/10">
+    <div class="container-page flex flex-wrap items-center justify-between gap-2 py-4 text-xs text-sand/80">
+      <p>© {new Date().getFullYear()} Che Xu Studio. Fictional storefront demonstration.</p>
+      <p>Locale en-CA · Prices shown in CAD</p>
+    </div>
+  </div>
+</footer>

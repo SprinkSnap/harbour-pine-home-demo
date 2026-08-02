@@ -1,0 +1,20 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import WishlistView from '../components/react/WishlistView';
+---
+
+<BaseLayout
+  title="Wishlist"
+  description="Save Harbour & Pine Home demonstration products locally in your browser wishlist."
+  path="/wishlist/"
+>
+  <section class="section-space pt-8">
+    <div class="container-page">
+      <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Wishlist' }]} />
+      <div class="mt-6">
+        <WishlistView client:load />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

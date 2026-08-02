@@ -1,0 +1,256 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProductCard from '../components/ProductCard.astro';
+import ProductFinder from '../components/react/ProductFinder';
+import { bundles } from '../data/bundles';
+import { collections } from '../data/collections';
+import { getFeaturedProducts, getProductById, products } from '../data/products';
+import {
+  brandValues,
+  conversionShowcase,
+  faqs,
+  roomPaths,
+  siteConfig,
+} from '../data/site';
+import { formatCad } from '../lib/money';
+
+const featured = getFeaturedProducts(8);
+---
+
+<BaseLayout
+  title="Thoughtful Pieces for Everyday Living"
+  description="Harbour & Pine Home is a fictional Canadian home and lifestyle storefront by Che Xu Studio featuring product discovery, accessible checkout and conversion-focused design."
+  path="/"
+>
+  <section class="relative isolate overflow-hidden">
+    <img
+      src="/images/brand/hero.svg"
+      alt="Editorial still life of home accessories on a warm linen surface"
+      width="1600"
+      height="1200"
+      class="absolute inset-0 -z-10 h-full w-full object-cover"
+      fetchpriority="high"
+      decoding="async"
+    />
+    <div class="absolute inset-0 -z-10 bg-gradient-to-r from-linen/95 via-linen/82 to-linen/35"></div>
+    <div class="container-page flex min-h-[78vh] items-center py-14 md:py-20">
+      <div class="max-w-xl fade-up">
+        <p class="font-display text-3xl text-pine-dark md:text-4xl">{siteConfig.name}</p>
+        <p class="eyebrow mt-4">Modern Home Essentials</p>
+        <h1 class="mt-3 font-display text-4xl text-pine-dark md:text-5xl lg:text-[3.4rem]">
+          Thoughtful Pieces for Everyday Living.
+        </h1>
+        <p class="mt-5 text-lg text-charcoal/80">
+          A curated collection of practical, beautifully designed objects created to make everyday spaces feel more comfortable and considered.
+        </p>
+        <div class="mt-7 flex flex-wrap gap-3">
+          <a href="/collections/" class="btn btn-primary">Shop the Collection</a>
+          <a href="/shop/?filter=new" class="btn btn-secondary">Explore New Arrivals</a>
+          <button type="button" class="btn btn-clay" data-open-enquiry>Build a Store Like This</button>
+        </div>
+        <p class="mt-5 text-sm text-charcoal/70">{siteConfig.disclosure}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-space pt-0">
+    <div class="container-page">
+      <div class="max-w-2xl">
+        <p class="eyebrow">Shop by collection</p>
+        <h2 class="mt-2 font-display text-3xl text-pine-dark md:text-4xl">Six calm paths through the home.</h2>
+      </div>
+      <ul class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          collections.map((collection) => (
+            <li>
+              <a href={`/collections/${collection.slug}/`} class="group block no-underline">
+                <div class="overflow-hidden rounded-[var(--radius-lg)]">
+                  <img
+                    src={collection.image.src}
+                    alt={collection.image.alt}
+                    width={collection.image.width}
+                    height={collection.image.height}
+                    class="aspect-[4/3] w-full object-cover transition duration-[var(--duration-med)] group-hover:scale-[1.02]"
+                    loading="lazy"
+                  />
+                </div>
+                <h3 class="mt-3 font-display text-2xl text-pine-dark">{collection.name}</h3>
+                <p class="mt-1 text-sm text-charcoal/75">{collection.description}</p>
+                <span class="mt-2 inline-block text-sm font-semibold text-harbour underline-offset-2 group-hover:underline">
+                  Explore {collection.name}
+                </span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="section-space bg-porcelain/70">
+    <div class="container-page">
+      <div class="flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <p class="eyebrow">Featured products</p>
+          <h2 class="mt-2 font-display text-3xl text-pine-dark md:text-4xl">Considered Favourites.</h2>
+        </div>
+        <a href="/shop/" class="btn btn-secondary">View all products</a>
+      </div>
+      <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {featured.map((product, index) => <ProductCard product={product} eager={index < 2} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-space">
+    <div class="container-page">
+      <div class="max-w-2xl">
+        <h2 class="font-display text-3xl text-pine-dark md:text-4xl">Designed for Real Homes and Everyday Routines.</h2>
+      </div>
+      <ul class="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-5">
+        {
+          brandValues.map((value) => (
+            <li class="border-t border-sand pt-4">
+              <h3 class="font-display text-xl text-pine-dark">{value.title}</h3>
+              <p class="mt-2 text-sm text-charcoal/75">{value.description}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="section-space pt-0">
+    <div class="container-page">
+      <div class="max-w-2xl">
+        <p class="eyebrow">Shop by room</p>
+        <h2 class="mt-2 font-display text-3xl text-pine-dark">Start with the space you use most.</h2>
+      </div>
+      <ul class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          roomPaths.map((room) => (
+            <li>
+              <a href={room.href} class="group block no-underline">
+                <img
+                  src={room.image}
+                  alt=""
+                  width="1200"
+                  height="1200"
+                  class="aspect-square rounded-[var(--radius-lg)] object-cover"
+                  loading="lazy"
+                />
+                <h3 class="mt-3 text-xl font-semibold text-pine-dark">{room.title}</h3>
+                <p class="mt-1 text-sm text-charcoal/75">{room.description}</p>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="section-space bg-linen/80">
+    <div class="container-page">
+      <ProductFinder client:visible products={products} />
+    </div>
+  </section>
+
+  <section class="section-space">
+    <div class="container-page">
+      <div class="max-w-2xl">
+        <p class="eyebrow">Complete the space</p>
+        <h2 class="mt-2 font-display text-3xl text-pine-dark">Compatible sets for calmer rooms.</h2>
+        <p class="mt-3 text-charcoal/80">
+          Bundle savings are illustrative unless a live store calculates them from verified pricing. This demo groups complementary products only.
+        </p>
+      </div>
+      <ul class="mt-8 grid gap-5 lg:grid-cols-3">
+        {
+          bundles.map((bundle) => {
+            const items = bundle.productIds.map((id) => getProductById(id)).filter(Boolean);
+            const total = items.reduce((sum, item) => sum + (item?.price ?? 0), 0);
+            return (
+              <li class="surface rounded-[var(--radius-xl)] p-5">
+                <h3 class="font-display text-2xl text-pine-dark">{bundle.name}</h3>
+                <p class="mt-2 text-sm text-charcoal/75">{bundle.description}</p>
+                <ul class="mt-4 space-y-2 text-sm">
+                  {items.map((item) => (
+                    <li>
+                      <a class="font-semibold text-pine hover:underline" href={`/products/${item!.slug}/`}>
+                        {item!.name}
+                      </a>
+                      <span class="text-charcoal/70"> · {formatCad(item!.price)}</span>
+                    </li>
+                  ))}
+                </ul>
+                <p class="mt-4 font-semibold text-pine-dark">Combined demo price: {formatCad(total)}</p>
+                <p class="mt-2 text-xs text-charcoal/70">{bundle.illustrativeNote}</p>
+              </li>
+            );
+          })
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="section-space bg-pine-dark text-porcelain">
+    <div class="container-page grid gap-8 lg:grid-cols-[1fr_1fr] lg:items-center">
+      <div>
+        <p class="eyebrow text-sage">Che Xu Studio</p>
+        <h2 class="mt-2 font-display text-3xl text-porcelain md:text-4xl">
+          Designed to Turn Product Browsing Into Confident Purchases.
+        </h2>
+        <p class="mt-4 max-w-xl text-sand/90">
+          This demonstration shows the systems Che Xu Studio builds for merchants who need clarity, speed and trust—not pressure tactics.
+        </p>
+        <button type="button" class="btn btn-clay mt-6" data-open-enquiry>Build This for My Business</button>
+      </div>
+      <ul class="grid gap-3 sm:grid-cols-2">
+        {
+          conversionShowcase.map((item) => (
+            <li class="rounded-[var(--radius-md)] border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold">
+              {item}
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="section-space">
+    <div class="container-page max-w-3xl">
+      <h2 class="font-display text-3xl text-pine-dark">Frequently asked questions</h2>
+      <div class="mt-6 space-y-3">
+        {
+          faqs.map((faq) => (
+            <details class="surface rounded-[var(--radius-lg)] px-4 py-3">
+              <summary class="cursor-pointer list-none font-semibold text-pine-dark focus-visible:outline focus-visible:outline-2">
+                {faq.question}
+              </summary>
+              <p class="mt-3 text-sm text-charcoal/80">{faq.answer}</p>
+            </details>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-space pt-0">
+    <div class="container-page">
+      <div class="surface rounded-[1.5rem] px-6 py-10 text-center md:px-12">
+        <h2 class="font-display text-3xl text-pine-dark md:text-4xl">
+          Your Products Deserve More Than a Generic Storefront.
+        </h2>
+        <p class="mx-auto mt-4 max-w-2xl text-charcoal/80">
+          Che Xu Studio can build a fast, customer-friendly online store designed around your products, customers and growth goals.
+        </p>
+        <div class="mt-6 flex flex-wrap justify-center gap-3">
+          <button type="button" class="btn btn-clay" data-open-enquiry>Request My Store Plan</button>
+          <a href={siteConfig.packagesUrl} class="btn btn-secondary" target="_blank" rel="noopener noreferrer">
+            View Che Xu Studio Packages
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

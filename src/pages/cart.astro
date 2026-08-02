@@ -1,0 +1,20 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import CartPageView from '../components/react/CartPageView';
+---
+
+<BaseLayout
+  title="Demo Cart"
+  description="Review your Harbour & Pine Home demonstration cart. No real order will be created."
+  path="/cart/"
+>
+  <section class="section-space pt-8">
+    <div class="container-page">
+      <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Cart' }]} />
+      <div class="mt-6">
+        <CartPageView client:load />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

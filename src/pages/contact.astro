@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { siteConfig } from '../data/site';
+---
+
+<BaseLayout
+  title="Contact"
+  description="Contact Che Xu Studio about building a conversion-focused online store like Harbour & Pine Home."
+  path="/contact/"
+>
+  <section class="section-space pt-8">
+    <div class="container-page max-w-3xl">
+      <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Contact' }]} />
+      <h1 class="mt-4 font-display text-4xl text-pine-dark">Contact Che Xu Studio</h1>
+      <p class="mt-4 text-charcoal/80">
+        Harbour & Pine Home is a fictional demonstration. Genuine business enquiries go to Che Xu Studio—the only real lead-capture path in this project.
+      </p>
+      <div class="surface mt-8 rounded-[var(--radius-xl)] p-6">
+        <h2 class="font-display text-2xl text-pine-dark">Ready to Build a Store Designed Around Your Customers?</h2>
+        <p class="mt-3 text-charcoal/80">
+          Share your catalogue size, goals and timeline. We’ll outline a practical store plan.
+        </p>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <button type="button" class="btn btn-clay" data-open-enquiry>Request My Store Plan</button>
+          <a href={siteConfig.packagesUrl} class="btn btn-secondary" target="_blank" rel="noopener noreferrer">
+            View Che Xu Studio Packages
+          </a>
+          <a href={siteConfig.caseStudyUrl} class="btn btn-ghost" target="_blank" rel="noopener noreferrer">
+            View Case Study
+          </a>
+        </div>
+        <p class="mt-4 text-sm text-charcoal/70">
+          No street address or phone number is published for this fictional store.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,78 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import ProductCard from '../components/ProductCard.astro';
+import ShopFilters from '../components/react/ShopFilters';
+import { products } from '../data/products';
+import { filterProducts, parseFilterParams } from '../lib/product-filters';
+
+const state = parseFilterParams(Astro.url.searchParams);
+const result = filterProducts(products, state);
+---
+
+<BaseLayout
+  title="Shop All"
+  description="Browse the Harbour & Pine Home demonstration catalogue with search, filters and calm product discovery."
+  path="/shop/"
+>
+  <section class="section-space pt-8">
+    <div class="container-page">
+      <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Shop' }]} />
+      <h1 class="mt-4 font-display text-4xl text-pine-dark">Shop</h1>
+      <p class="mt-3 max-w-2xl text-charcoal/80">
+        Discover practical home pieces across living, kitchen, textiles, storage, workspace and gifts.
+      </p>
+      {
+        result.activeFilters.length > 0 && (
+          <div class="mt-4 flex flex-wrap items-center gap-2" aria-live="polite">
+            <span class="text-sm font-semibold text-pine-dark">Active filters:</span>
+            {result.activeFilters.map((filter) => (
+              <span class="pill">
+                {filter.label}: {filter.value}
+              </span>
+            ))}
+            <a href="/shop/" class="btn btn-ghost">Clear all</a>
+          </div>
+        )
+      }
+      <div class="mt-8 grid gap-8 lg:grid-cols-[280px_1fr]">
+        <ShopFilters client:load products={products} resultCount={result.total} initialQuery={state.q} />
+        <div>
+          {
+            result.items.length === 0 ? (
+              <div class="surface rounded-[var(--radius-xl)] p-6" role="status">
+                <h2 class="font-display text-2xl text-pine-dark">No products match these filters</h2>
+                <p class="mt-2 text-charcoal/80">Try clearing filters or browsing a collection.</p>
+                <a href="/shop/" class="btn btn-primary mt-4">Reset filters</a>
+              </div>
+            ) : (
+              <div class="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
+                {result.items.map((product) => <ProductCard product={product} />)}
+              </div>
+            )
+          }
+          {
+            result.totalPages > 1 && (
+              <nav class="mt-8 flex flex-wrap gap-2" aria-label="Pagination">
+                {Array.from({ length: result.totalPages }, (_, index) => {
+                  const page = index + 1;
+                  const params = new URLSearchParams(Astro.url.searchParams);
+                  params.set('page', String(page));
+                  return (
+                    <a
+                      href={`/shop/?${params.toString()}`}
+                      class:list={['btn', page === result.page ? 'btn-primary' : 'btn-secondary']}
+                      aria-current={page === result.page ? 'page' : undefined}
+                    >
+                      {page}
+                    </a>
+                  );
+                })}
+              </nav>
+            )
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

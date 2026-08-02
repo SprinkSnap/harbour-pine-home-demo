@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { journalPosts } from '../../data/journal';
+---
+
+<BaseLayout
+  title="Journal"
+  description="Illustrative journal articles supporting the Harbour & Pine Home e-commerce demonstration by Che Xu Studio."
+  path="/journal/"
+>
+  <section class="section-space pt-8">
+    <div class="container-page">
+      <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Journal' }]} />
+      <h1 class="mt-4 font-display text-4xl text-pine-dark">Journal</h1>
+      <p class="mt-3 max-w-2xl text-charcoal/80">
+        Short styling notes that demonstrate content architecture for a lifestyle store. Articles are fictional and illustrative.
+      </p>
+      <ul class="mt-8 grid gap-5 md:grid-cols-3">
+        {
+          journalPosts.map((post) => (
+            <li class="surface rounded-[var(--radius-xl)] p-5">
+              <p class="text-xs font-semibold uppercase tracking-[0.08em] text-harbour">
+                {post.publishedAt} · {post.readingMinutes} min
+              </p>
+              <h2 class="mt-3 font-display text-2xl text-pine-dark">
+                <a href={`/journal/${post.slug}/`} class="hover:underline">{post.title}</a>
+              </h2>
+              <p class="mt-2 text-sm text-charcoal/75">{post.excerpt}</p>
+              <a href={`/journal/${post.slug}/`} class="mt-4 inline-block text-sm font-semibold text-harbour hover:underline">
+                Read article
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+</BaseLayout>

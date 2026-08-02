@@ -1,0 +1,37 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { siteConfig } from '../data/site';
+---
+
+<BaseLayout
+  title="Our Story"
+  description="Learn about the Harbour & Pine Home fictional brand positioning created for Che Xu Studio’s e-commerce portfolio."
+  path="/about/"
+>
+  <section class="section-space pt-8">
+    <div class="container-page max-w-3xl">
+      <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Our Story' }]} />
+      <h1 class="mt-4 font-display text-4xl text-pine-dark">Our Story</h1>
+      <p class="mt-4 rounded-md bg-sand/70 px-3 py-2 text-sm">
+        Harbour & Pine Home is a fictional store concept. No founders, employees, suppliers or physical locations are claimed here.
+      </p>
+      <div class="prose mt-6 space-y-4 text-charcoal/85">
+        <p>
+          Harbour & Pine Home explores how a modern Canadian home and lifestyle brand can present products with calm clarity—
+          practical objects, readable information and a shopping journey that respects the customer’s time.
+        </p>
+        <p>
+          The assortment focuses on everyday living: soft textiles, tableware, storage and workspace tools that feel considered without becoming precious.
+        </p>
+        <p>
+          This standalone demonstration exists to show how Che Xu Studio designs conversion systems, product discovery, accessibility and SEO architecture for merchants.
+        </p>
+      </div>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <button type="button" class="btn btn-clay" data-open-enquiry>Build a Store Like This</button>
+        <a href={siteConfig.caseStudyUrl} class="btn btn-secondary" target="_blank" rel="noopener noreferrer">View case study</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

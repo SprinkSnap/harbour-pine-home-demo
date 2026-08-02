@@ -1,0 +1,111 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import ProductActions from '../../components/react/ProductActions';
+import ProductGallery from '../../components/react/ProductGallery';
+import { getCollection } from '../../data/collections';
+import { getProductBySlug, getRelatedProducts, products } from '../../data/products';
+import { formatCad } from '../../lib/money';
+import { breadcrumbJsonLd } from '../../lib/seo';
+import { siteConfig } from '../../data/site';
+
+export function getStaticPaths() {
+  return products.map((product) => ({ params: { slug: product.slug } }));
+}
+
+const { slug } = Astro.params;
+const product = getProductBySlug(slug!);
+if (!product) {
+  return Astro.redirect('/404/');
+}
+const collection = getCollection(product.collection);
+const related = getRelatedProducts(product, 4);
+---
+
+<BaseLayout
+  title={product.seoTitle}
+  description={product.seoDescription}
+  path={`/products/${product.slug}/`}
+  ogImage={product.images[0]?.src}
+  jsonLd={breadcrumbJsonLd([
+    { name: 'Home', path: '/' },
+    { name: 'Shop', path: '/shop/' },
+    { name: collection?.name ?? 'Collection', path: `/collections/${product.collection}/` },
+    { name: product.name, path: `/products/${product.slug}/` },
+  ])}
+>
+  <section class="section-space pt-8">
+    <div class="container-page">
+      <Breadcrumbs
+        items={[
+          { label: 'Home', href: '/' },
+          { label: 'Shop', href: '/shop/' },
+          { label: collection?.name ?? 'Collection', href: `/collections/${product.collection}/` },
+          { label: product.name },
+        ]}
+      />
+      <div class="mt-6 grid gap-8 lg:grid-cols-2">
+        <ProductGallery client:load images={product.images} productName={product.name} />
+        <div>
+          <p class="eyebrow">{collection?.name}</p>
+          <h1 class="mt-2 font-display text-4xl text-pine-dark">{product.name}</h1>
+          <p class="mt-2 text-sm text-charcoal/70">Price: {formatCad(product.price)} CAD</p>
+          <p class="mt-4 text-charcoal/80">{product.shortDescription}</p>
+          <div class="mt-6">
+            <ProductActions client:load product={product} />
+          </div>
+          <div class="mt-8 space-y-4 text-sm text-charcoal/80">
+            <div>
+              <h2 class="font-display text-xl text-pine-dark">Why it works</h2>
+              <p class="mt-2">{product.description}</p>
+            </div>
+            <div>
+              <h2 class="font-display text-xl text-pine-dark">Materials</h2>
+              <ul class="mt-2 list-disc pl-5">
+                {product.materials.map((material) => <li>{material}</li>)}
+              </ul>
+            </div>
+            <div>
+              <h2 class="font-display text-xl text-pine-dark">Dimensions</h2>
+              <p class="mt-2">{product.dimensions}</p>
+            </div>
+            <div>
+              <h2 class="font-display text-xl text-pine-dark">Care</h2>
+              <p class="mt-2">{product.care}</p>
+            </div>
+            <div class="rounded-[var(--radius-lg)] bg-linen p-4">
+              <h2 class="font-display text-xl text-pine-dark">Sample shipping information</h2>
+              <p class="mt-2">
+                Sample shipping estimate shown in cart for demonstration only. A real merchant must provide approved shipping rules.
+              </p>
+            </div>
+            <div class="rounded-[var(--radius-lg)] bg-linen p-4">
+              <h2 class="font-display text-xl text-pine-dark">Sample return information</h2>
+              <p class="mt-2">
+                Sample returns guidance is illustrative. See the Returns page for demonstration policy architecture.
+              </p>
+            </div>
+          </div>
+          <div class="mt-8 surface rounded-[var(--radius-xl)] p-5">
+            <h2 class="font-display text-2xl text-pine-dark">Want a product experience like this?</h2>
+            <p class="mt-2 text-sm text-charcoal/80">
+              Che Xu Studio builds conversion-focused product pages with clear variants, SEO and accessible shopping flows.
+            </p>
+            <button type="button" class="btn btn-clay mt-4" data-open-enquiry>Build a Store Like This</button>
+            <a href={siteConfig.caseStudyUrl} class="btn btn-secondary mt-3 ml-2" target="_blank" rel="noopener noreferrer">
+              View case study
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-14">
+        <h2 class="font-display text-3xl text-pine-dark">Related products</h2>
+        <div class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {related.map((item) => <ProductCard product={item} />)}
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

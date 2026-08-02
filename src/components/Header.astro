@@ -1,0 +1,21 @@
+---
+import { navPrimary } from '../data/site';
+import Logo from './Logo.astro';
+import HeaderControls from './react/HeaderControls';
+---
+
+<header class="sticky top-0 z-50 border-b border-sand/80 bg-porcelain/90 backdrop-blur-md">
+  <div class="container-page flex min-h-[4.5rem] items-center justify-between gap-4 py-3">
+    <Logo />
+    <nav class="hidden items-center gap-1 lg:flex" aria-label="Primary">
+      {
+        navPrimary.map((item) => (
+          <a href={item.href} class="btn btn-ghost min-h-11 px-3 text-sm font-semibold text-pine-dark">
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+    <HeaderControls client:load />
+  </div>
+</header>

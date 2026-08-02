@@ -1,0 +1,20 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import CheckoutDemo from '../../components/react/CheckoutDemo';
+---
+
+<BaseLayout
+  title="Checkout Demonstration"
+  description="Complete the Harbour & Pine Home guest checkout demonstration. No order, shipment or payment is created."
+  path="/checkout/"
+>
+  <section class="section-space pt-8">
+    <div class="container-page">
+      <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Cart', href: '/cart/' }, { label: 'Checkout' }]} />
+      <div class="mt-6">
+        <CheckoutDemo client:load />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

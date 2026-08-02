@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /
+
+Sitemap: https://harbourandpinehome.chexustudio.com/sitemap.xml

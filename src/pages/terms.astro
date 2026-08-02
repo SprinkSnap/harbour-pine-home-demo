@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+---
+
+<BaseLayout
+  title="Terms"
+  description="Terms for using the Harbour & Pine Home fictional e-commerce demonstration by Che Xu Studio."
+  path="/terms/"
+>
+  <section class="section-space pt-8">
+    <div class="container-page max-w-3xl">
+      <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Terms' }]} />
+      <h1 class="mt-4 font-display text-4xl text-pine-dark">Terms</h1>
+      <p class="mt-4 rounded-md bg-sand/70 px-3 py-2 text-sm">
+        Illustrative policy for a fictional portfolio store. A real merchant must provide and approve its own terms.
+      </p>
+      <div class="mt-6 space-y-4 text-charcoal/85">
+        <p>
+          Harbour & Pine Home is a portfolio demonstration. It does not sell products, accept real orders or process live payments.
+        </p>
+        <p>
+          Product details, shipping samples and policy copy are fictional and provided to demonstrate storefront architecture.
+        </p>
+        <p>
+          Business enquiries submitted through the lead form are directed to Che Xu Studio.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

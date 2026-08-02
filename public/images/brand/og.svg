@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#102820"/>
+  <circle cx="980" cy="120" r="160" fill="#285B68" opacity="0.35"/>
+  <circle cx="160" cy="540" r="180" fill="#9EAF9D" opacity="0.25"/>
+  <text x="80" y="250" font-family="Georgia, serif" font-size="72" fill="#FFFEFB">Harbour &amp; Pine Home</text>
+  <text x="80" y="330" font-family="Arial, sans-serif" font-size="34" fill="#E8DDCC">Thoughtful pieces for everyday living.</text>
+  <text x="80" y="520" font-family="Arial, sans-serif" font-size="24" fill="#9EAF9D">Portfolio concept by Che Xu Studio</text>
+</svg>

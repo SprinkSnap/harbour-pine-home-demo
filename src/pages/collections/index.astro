@@ -1,0 +1,44 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { collections } from '../../data/collections';
+---
+
+<BaseLayout
+  title="Collections"
+  description="Explore Harbour & Pine Home collections for living, kitchen, textiles, storage, workspace and gifts."
+  path="/collections/"
+>
+  <section class="section-space pt-8">
+    <div class="container-page">
+      <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Collections' }]} />
+      <h1 class="mt-4 font-display text-4xl text-pine-dark">Collections</h1>
+      <p class="mt-3 max-w-2xl text-charcoal/80">
+        Six product paths designed for clear discovery on mobile and desktop.
+      </p>
+      <ul class="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+        {
+          collections.map((collection) => (
+            <li>
+              <a href={`/collections/${collection.slug}/`} class="group block no-underline">
+                <img
+                  src={collection.image.src}
+                  alt={collection.image.alt}
+                  width={collection.image.width}
+                  height={collection.image.height}
+                  class="aspect-[4/3] w-full rounded-[var(--radius-lg)] object-cover"
+                  loading="lazy"
+                />
+                <h2 class="mt-3 font-display text-2xl text-pine-dark">{collection.name}</h2>
+                <p class="mt-1 text-sm text-charcoal/75">{collection.description}</p>
+                <span class="mt-2 inline-block text-sm font-semibold text-harbour group-hover:underline">
+                  Shop {collection.name}
+                </span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+</BaseLayout>

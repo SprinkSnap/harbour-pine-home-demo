@@ -1,0 +1,43 @@
+---
+import type { Product } from '../data/types';
+import { formatCad } from '../lib/money';
+import ProductActions from './react/ProductActions';
+
+interface Props {
+  product: Product;
+  eager?: boolean;
+}
+const { product, eager = false } = Astro.props;
+const image = product.images[0];
+---
+
+<article class="group flex h-full flex-col">
+  <a href={`/products/${product.slug}/`} class="block no-underline">
+    <div class="product-media transition duration-[var(--duration-med)] group-hover:-translate-y-0.5 group-hover:shadow-[var(--shadow-soft)]">
+      {
+        image && (
+          <img
+            src={image.src}
+            alt={image.alt}
+            width={image.width}
+            height={image.height}
+            loading={eager ? 'eager' : 'lazy'}
+            decoding="async"
+          />
+        )
+      }
+    </div>
+    <div class="mt-3 space-y-1">
+      <p class="text-xs font-semibold uppercase tracking-[0.08em] text-harbour">{product.collection.replace('-', ' & ')}</p>
+      <h3 class="text-lg font-semibold text-pine-dark">{product.name}</h3>
+      <p class="text-sm text-charcoal/75">{product.shortDescription}</p>
+      <p class="font-semibold text-pine-dark">{formatCad(product.price)}</p>
+      <p class="text-xs text-charcoal/70">
+        Variants: {product.variants.map((variant) => variant.label).join(', ')}
+      </p>
+    </div>
+  </a>
+  <div class="mt-auto">
+    <ProductActions client:visible product={product} compact />
+  </div>
+</article>
