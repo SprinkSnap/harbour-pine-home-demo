@@ -35,11 +35,30 @@ export function websiteJsonLd(siteUrl: string = siteConfig.demoDomain) {
     url: siteUrl,
     inLanguage: siteConfig.locale,
     description: siteConfig.description,
+    publisher: {
+      '@type': 'Organization',
+      name: siteConfig.name,
+      url: siteUrl,
+      logo: absoluteUrl('/images/brand/logo-mark.svg', siteUrl),
+    },
     potentialAction: {
       '@type': 'SearchAction',
       target: `${siteUrl}/search/?q={search_term_string}`,
       'query-input': 'required name=search_term_string',
     },
+  };
+}
+
+export function organizationJsonLd(siteUrl: string = siteConfig.demoDomain) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: siteConfig.name,
+    alternateName: siteConfig.shortName,
+    url: siteUrl,
+    logo: absoluteUrl('/images/brand/logo-mark.svg', siteUrl),
+    description: siteConfig.description,
+    inLanguage: siteConfig.locale,
   };
 }
 

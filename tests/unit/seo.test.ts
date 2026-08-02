@@ -5,9 +5,11 @@ import { faqs } from '../../src/data/site';
 import {
   buildRobotsTxt,
   faqJsonLd,
+  organizationJsonLd,
   productJsonLd,
   collectionJsonLd,
   resolveRobots,
+  websiteJsonLd,
 } from '../../src/lib/seo';
 import { shouldEmitProductSchema } from '../../src/lib/demo-mode';
 
@@ -51,5 +53,15 @@ describe('seo helpers', () => {
     const page = collectionJsonLd(collection, 4, 'https://example.com');
     expect(page['@type']).toBe('CollectionPage');
     expect(page.numberOfItems).toBe(4);
+  });
+
+  it('includes brand logo in website and organization schema', () => {
+    const site = websiteJsonLd('https://example.com');
+    expect(site.publisher.logo).toBe('https://example.com/images/brand/logo-mark.svg');
+
+    const org = organizationJsonLd('https://example.com');
+    expect(org['@type']).toBe('Organization');
+    expect(org.logo).toBe('https://example.com/images/brand/logo-mark.svg');
+    expect(org.alternateName).toBe('Harbour & Pine');
   });
 });

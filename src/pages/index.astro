@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import LogoMark from '../components/LogoMark.astro';
 import ProductCard from '../components/ProductCard.astro';
 import ProductFinder from '../components/react/ProductFinder';
 import { bundles } from '../data/bundles';
@@ -40,8 +41,11 @@ const featured = getFeaturedProducts(8);
     <div class="absolute inset-0 -z-10 bg-gradient-to-r from-linen/95 via-linen/82 to-linen/35"></div>
     <div class="container-page flex min-h-[min(62vh,28rem)] items-end py-8 sm:min-h-[70vh] sm:items-center sm:py-14 md:min-h-[78vh] md:py-20">
       <div class="max-w-xl fade-up">
-        <p class="font-display text-2xl text-pine-dark sm:text-3xl md:text-4xl">{siteConfig.name}</p>
-        <h1 class="mt-2 font-display text-[1.85rem] leading-tight text-pine-dark sm:mt-3 sm:text-4xl md:text-5xl lg:text-[3.4rem]">
+        <div class="flex items-center gap-3 sm:gap-4">
+          <LogoMark size="lg" />
+          <p class="font-display text-2xl leading-none text-pine-dark sm:text-3xl md:text-4xl">{siteConfig.name}</p>
+        </div>
+        <h1 class="mt-4 font-display text-[1.85rem] leading-tight text-pine-dark sm:mt-5 sm:text-4xl md:text-5xl lg:text-[3.4rem]">
           Thoughtful Pieces for Everyday Living.
         </h1>
         <p class="mt-3 text-base text-charcoal/80 sm:mt-5 sm:text-lg">
