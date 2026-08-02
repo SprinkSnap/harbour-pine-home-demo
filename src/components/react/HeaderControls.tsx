@@ -2,6 +2,7 @@ import { useEffect, useId, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { mobileShopLinks, navPrimary, siteConfig } from '../../data/site';
 import { trackEvent } from '../../lib/analytics';
+import CartIcon, { CartCountBadge } from './CartIcon';
 import { useStore } from './store';
 
 function IconSearch() {
@@ -28,22 +29,6 @@ function IconHeart() {
   );
 }
 
-function IconCart() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-      <path
-        d="M3.5 4h1.7l1.1 8.2a1.5 1.5 0 0 0 1.5 1.3h6.4a1.5 1.5 0 0 0 1.5-1.2L17 7H6.2"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <circle cx="8.2" cy="16" r="1.1" fill="currentColor" />
-      <circle cx="14.2" cy="16" r="1.1" fill="currentColor" />
-    </svg>
-  );
-}
-
 export default function HeaderControls() {
   const { totals, wishlistIds, setCartOpen, setEnquiryOpen } = useStore();
   const [menuOpen, setMenuOpen] = useState(false);
@@ -52,6 +37,8 @@ export default function HeaderControls() {
   const openButtonRef = useRef<HTMLButtonElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const previouslyFocused = useRef<HTMLElement | null>(null);
+  const cartCount = totals.itemCount;
+  const cartActive = cartCount > 0;
 
   useEffect(() => {
     setMounted(true);
@@ -146,13 +133,14 @@ export default function HeaderControls() {
                   <li>
                     <button
                       type="button"
-                      className="flex min-h-11 w-full items-center rounded-md px-2 text-left font-semibold"
+                      className="flex min-h-11 w-full items-center gap-2 rounded-md px-2 text-left font-semibold"
                       onClick={() => {
                         setMenuOpen(false);
                         setCartOpen(true);
                       }}
                     >
-                      Cart ({totals.itemCount})
+                      <CartIcon size={18} active={cartActive} />
+                      <span>Demo cart ({cartCount})</span>
                     </button>
                   </li>
                 </ul>
@@ -202,17 +190,18 @@ export default function HeaderControls() {
         </a>
         <button
           type="button"
-          className="btn btn-ghost relative hidden min-h-11 min-w-11 px-2 md:inline-flex md:px-3"
-          aria-label={`Demo cart, ${totals.itemCount} items`}
+          className={`btn relative min-h-11 min-w-11 px-2 md:px-3 ${
+            cartActive ? 'btn-secondary' : 'btn-ghost'
+          }`}
+          aria-label={`Open demo cart, ${cartCount} ${cartCount === 1 ? 'item' : 'items'}`}
           onClick={() => setCartOpen(true)}
         >
-          <IconCart />
+          <CartIcon size={20} active={cartActive} />
           <span className="hidden lg:inline">Cart</span>
-          {totals.itemCount > 0 ? (
-            <span className="pill absolute -right-0.5 -top-0.5 min-h-5 min-w-5 justify-center px-1 text-[0.7rem] lg:static lg:ml-1">
-              {totals.itemCount}
-            </span>
-          ) : null}
+          <CartCountBadge
+            count={cartCount}
+            className="absolute -right-0.5 -top-0.5 lg:static lg:ml-1"
+          />
         </button>
         <button
           type="button"

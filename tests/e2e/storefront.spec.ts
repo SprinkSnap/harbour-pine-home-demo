@@ -40,6 +40,7 @@ test.describe('Harbour & Pine storefront', () => {
   test('mobile menu opens full-height with shop links', async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto('/');
+    await expect(page.getByRole('banner').getByRole('button', { name: /Open demo cart/i })).toBeVisible();
     const menuButton = page.getByRole('banner').getByRole('button', { name: 'Menu' });
     await expect(menuButton).toBeVisible();
     await menuButton.click();

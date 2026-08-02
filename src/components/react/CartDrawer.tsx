@@ -1,5 +1,6 @@
 import { useEffect, useId, useRef } from 'react';
 import { formatCad } from '../../lib/money';
+import CartIcon from './CartIcon';
 import { useStore } from './store';
 
 export default function CartDrawer() {
@@ -40,11 +41,22 @@ export default function CartDrawer() {
         aria-labelledby={titleId}
       >
         <div className="flex items-center justify-between border-b border-sand px-5 py-4">
-          <div>
-            <h2 id={titleId} className="font-display text-2xl text-pine-dark">
-              Demo cart
-            </h2>
-            <p className="mt-1 text-sm text-charcoal/80">Demo cart—no real order will be created.</p>
+          <div className="min-w-0">
+            <div className="flex items-center gap-2.5">
+              <span className="grid h-10 w-10 place-items-center rounded-full bg-linen text-pine-dark">
+                <CartIcon size={20} active={cartLines.length > 0} />
+              </span>
+              <div>
+                <h2 id={titleId} className="font-display text-2xl text-pine-dark">
+                  Demo cart
+                </h2>
+                <p className="mt-0.5 text-sm text-charcoal/80">
+                  {cartLines.length === 0
+                    ? 'Demo cart—no real order will be created.'
+                    : `${totals.itemCount} ${totals.itemCount === 1 ? 'item' : 'items'} · demo only`}
+                </p>
+              </div>
+            </div>
           </div>
           <button ref={closeRef} type="button" className="btn btn-ghost" onClick={() => setCartOpen(false)}>
             Close

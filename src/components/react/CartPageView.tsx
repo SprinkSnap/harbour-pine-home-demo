@@ -1,4 +1,5 @@
 import { formatCad } from '../../lib/money';
+import CartIcon from './CartIcon';
 import { useStore } from './store';
 
 export default function CartPageView() {
@@ -7,9 +8,14 @@ export default function CartPageView() {
   if (cartLines.length === 0) {
     return (
       <div className="surface rounded-[var(--radius-xl)] p-6">
-        <h1 className="font-display text-3xl text-pine-dark">Demo cart</h1>
+        <div className="flex items-center gap-3">
+          <span className="grid h-12 w-12 place-items-center rounded-full bg-linen text-pine-dark">
+            <CartIcon size={24} />
+          </span>
+          <h1 className="font-display text-3xl text-pine-dark">Demo cart</h1>
+        </div>
         <p className="mt-3 text-charcoal/80">Your demo cart is empty. No real order will be created in this demonstration.</p>
-        <a href="/shop/" className="btn btn-primary mt-4">
+        <a href="/shop/" className="btn btn-primary mt-4 w-full sm:w-auto">
           Continue shopping
         </a>
       </div>
@@ -21,8 +27,15 @@ export default function CartPageView() {
       <section className="surface rounded-[var(--radius-xl)] p-6">
         <div className="flex flex-wrap items-end justify-between gap-3">
           <div>
-            <h1 className="font-display text-3xl text-pine-dark">Demo cart</h1>
-            <p className="mt-2 text-sm text-charcoal/75">Demo cart—no real order will be created.</p>
+            <div className="flex items-center gap-3">
+              <span className="grid h-12 w-12 place-items-center rounded-full bg-linen text-pine-dark">
+                <CartIcon size={24} active />
+              </span>
+              <h1 className="font-display text-3xl text-pine-dark">Demo cart</h1>
+            </div>
+            <p className="mt-2 text-sm text-charcoal/75">
+              {totals.itemCount} {totals.itemCount === 1 ? 'item' : 'items'} · demo cart—no real order will be created.
+            </p>
           </div>
           <button type="button" className="btn btn-ghost" onClick={clearCart}>
             Clear cart
