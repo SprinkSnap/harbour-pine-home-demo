@@ -19,7 +19,10 @@ const { class: className = '', compact = false } = Astro.props;
   {
     !compact && (
       <span class="min-w-0 leading-tight">
-        <span class="block truncate font-display text-base text-pine-dark group-hover:text-pine sm:text-lg">Harbour & Pine Home</span>
+        <span class="block font-display text-base text-pine-dark group-hover:text-pine sm:text-lg">
+          <span class="md:hidden">Harbour & Pine</span>
+          <span class="hidden md:inline">Harbour & Pine Home</span>
+        </span>
         <span class="mt-0.5 hidden text-xs font-semibold tracking-[0.04em] text-harbour lg:block">Thoughtful pieces for everyday living.</span>
       </span>
     )

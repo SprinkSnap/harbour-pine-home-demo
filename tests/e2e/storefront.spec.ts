@@ -26,7 +26,7 @@ test.describe('Harbour & Pine storefront', () => {
 
   test('wishlist, cart and checkout demo flow', async ({ page }) => {
     await page.goto('/products/daybreak-mug-set/');
-    await page.getByRole('button', { name: /Add to demo cart/i }).first().click();
+    await page.getByRole('button', { name: /Add (to demo cart|·)/i }).first().click();
     await expect(page.getByRole('dialog', { name: /Demo cart/i })).toBeVisible();
     await page.getByRole('link', { name: /Continue to demo checkout/i }).click();
     await expect(page.getByRole('heading', { name: /Checkout demonstration/i })).toBeVisible();
@@ -37,13 +37,19 @@ test.describe('Harbour & Pine storefront', () => {
     await expect(page.getByText(/You’ve completed the Harbour & Pine checkout demonstration/i)).toBeVisible();
   });
 
-  test('mobile menu opens and restores focus', async ({ page }) => {
+  test('mobile menu opens full-height with shop links', async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto('/');
-    const menuButton = page.getByRole('button', { name: 'Menu' });
+    const menuButton = page.getByRole('banner').getByRole('button', { name: 'Menu' });
+    await expect(menuButton).toBeVisible();
     await menuButton.click();
-    await expect(page.getByRole('navigation', { name: 'Mobile' })).toBeVisible();
-    await page.getByRole('navigation', { name: 'Mobile' }).getByRole('button', { name: 'Close', exact: true }).click();
+    const nav = page.getByRole('navigation', { name: 'Mobile' });
+    await expect(nav).toBeVisible();
+    await expect(nav.getByRole('link', { name: 'Shop All' })).toBeVisible();
+    await expect(nav.getByRole('link', { name: 'Collections' })).toBeVisible();
+    const box = await nav.boundingBox();
+    expect(box?.height ?? 0).toBeGreaterThan(700);
+    await nav.getByRole('button', { name: 'Close', exact: true }).click();
     await expect(page.getByRole('navigation', { name: 'Mobile' })).toHaveCount(0);
   });
 });

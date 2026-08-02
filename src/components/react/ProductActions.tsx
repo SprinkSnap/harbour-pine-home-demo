@@ -112,11 +112,11 @@ export default function ProductActions({ product, compact = false }: Props) {
       </div>
       <p className="hidden text-sm text-charcoal/75 md:block">Demo cart only — no real order or payment will be created.</p>
 
-      <div className="fixed inset-x-0 bottom-0 z-40 border-t border-sand bg-porcelain/95 px-4 py-3 pr-[7.5rem] shadow-[var(--shadow-lift)] backdrop-blur-md md:hidden safe-bottom">
-        <div className="flex items-center gap-2">
+      <div className="fixed inset-x-0 bottom-0 z-40 border-t border-sand bg-porcelain/95 px-4 py-3 shadow-[var(--shadow-lift)] backdrop-blur-md md:hidden safe-bottom">
+        <div className="mx-auto flex w-full max-w-lg items-center gap-2">
           <button
             type="button"
-            className="btn btn-secondary min-h-11 min-w-11 px-3"
+            className="btn btn-secondary min-h-11 shrink-0 px-3"
             aria-label={wishlisted ? 'Remove from wishlist' : 'Save to wishlist'}
             aria-pressed={wishlisted}
             onClick={() => {
@@ -126,7 +126,7 @@ export default function ProductActions({ product, compact = false }: Props) {
           >
             {wishlisted ? 'Saved' : 'Save'}
           </button>
-          <button type="button" className="btn btn-primary min-h-11 flex-1" disabled={!canAdd} onClick={() => handleAdd()}>
+          <button type="button" className="btn btn-primary min-h-11 min-w-0 flex-1" disabled={!canAdd} onClick={() => handleAdd()}>
             Add · {formatCad(product.price)}
           </button>
         </div>
