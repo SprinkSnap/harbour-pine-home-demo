@@ -1,5 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" viewBox="0 0 180 180" role="img" aria-label="Harbour & Pine Home">
   <rect width="180" height="180" rx="40" fill="#102820"/>
-  <path d="M50 130V56c0-3.8 2.8-6.6 6.6-6.6h25.8c15.6 0 25.4 8.6 25.4 22 0 9.8-5.6 17.3-15 20.1L124 130h-15l-24-37.4H65V130H50Zm14.5-50.8h17.8c7.5 0 12.2-4.1 12.2-10.5s-4.7-10.3-12.2-10.3H64.5v20.8Z" fill="#F7F3EC"/>
-  <path d="M128 130c-14.2 0-23.4-9.2-23.4-23.6V57.2h14.2v45.8c0 7.5 3.9 12 11.4 12 3 0 5.3-.6 7-1.4l2.5 12c-3.1 1.4-7 2.4-11.7 2.4Z" fill="#E8DDCC"/>
+  <path d="M90 24 131.6 78H112.5L139.5 114H117L144 148H36l27-34H40.5L67.5 78H48.4L90 24Z" fill="#F7F3EC"/>
+  <path d="M83.2 148h13.6v10.2H83.2V148Z" fill="#9EAF9D"/>
+  <path d="M38 163c13.5-8.4 23.6-8.4 37.1 0s23.6 8.4 37.1 0 23.6-8.4 37.1 0" fill="none" stroke="#E8DDCC" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>

@@ -55,13 +55,17 @@ describe('seo helpers', () => {
     expect(page.numberOfItems).toBe(4);
   });
 
-  it('includes brand logo in website and organization schema', () => {
+  it('includes brand logo ImageObject in website and organization schema', () => {
     const site = websiteJsonLd('https://example.com');
-    expect(site.publisher.logo).toBe('https://example.com/images/brand/logo-mark.svg');
+    expect(site.publisher.logo['@type']).toBe('ImageObject');
+    expect(site.publisher.logo.url).toBe('https://example.com/images/brand/logo-mark.svg');
+    expect(site.publisher.logo.width).toBe(512);
 
     const org = organizationJsonLd('https://example.com');
     expect(org['@type']).toBe('Organization');
-    expect(org.logo).toBe('https://example.com/images/brand/logo-mark.svg');
-    expect(org.alternateName).toBe('Harbour & Pine');
+    expect(org.logo.url).toBe('https://example.com/images/brand/logo-mark.svg');
+    expect(org.image).toBe('https://example.com/images/brand/logo-mark.svg');
+    expect(org.alternateName).toContain('Harbour & Pine');
+    expect(org.slogan).toContain('everyday living');
   });
 });

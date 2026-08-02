@@ -17,6 +17,10 @@ export const siteConfig = {
   disclosure:
     'Interactive store demonstration—no real orders or payments.',
   sourceDemo: 'harbour-pine-home',
+  /** Canonical brand assets for favicon, schema.org logo, and social previews. */
+  logoMarkPath: '/images/brand/logo-mark.svg',
+  appleTouchIconPath: '/images/brand/apple-touch-icon.svg',
+  ogImagePath: '/images/brand/og.svg',
 } as const;
 
 export const navPrimary = [

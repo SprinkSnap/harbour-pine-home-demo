@@ -23,7 +23,7 @@ const {
   title,
   description,
   path = Astro.url.pathname,
-  ogImage = '/images/brand/og.svg',
+  ogImage = siteConfig.ogImagePath,
   ogType = 'website',
   noindex = false,
   jsonLd = [],
@@ -53,9 +53,13 @@ const schemas = [
     <meta name="robots" content={robots} />
     <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="apple-touch-icon" href="/images/brand/apple-touch-icon.svg" />
+    <link rel="apple-touch-icon" href={siteConfig.appleTouchIconPath} />
+    <link rel="mask-icon" href={siteConfig.logoMarkPath} color="#102820" />
+    <meta name="theme-color" content="#102820" />
     <meta name="application-name" content={siteConfig.shortName} />
     <meta name="apple-mobile-web-app-title" content={siteConfig.shortName} />
+    <meta property="og:image:alt" content={`${siteConfig.name} — ${siteConfig.tagline}`} />
+    <meta name="twitter:image:alt" content={`${siteConfig.name} — ${siteConfig.tagline}`} />
     <meta property="og:type" content={ogType} />
     <meta property="og:locale" content="en_CA" />
     <meta property="og:site_name" content={siteConfig.name} />

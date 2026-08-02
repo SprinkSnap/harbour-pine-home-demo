@@ -2,19 +2,20 @@
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%" stop-color="#F7F3EC"/>
-      <stop offset="55%" stop-color="#FFFEFB"/>
+      <stop offset="52%" stop-color="#FFFEFB"/>
       <stop offset="100%" stop-color="#E8DDCC"/>
     </linearGradient>
   </defs>
   <rect width="1200" height="630" fill="url(#bg)"/>
-  <circle cx="980" cy="120" r="180" fill="#9EAF9D" fill-opacity="0.28"/>
-  <circle cx="180" cy="520" r="220" fill="#285B68" fill-opacity="0.12"/>
-  <g transform="translate(96 168)">
-    <rect width="96" height="96" rx="24" fill="#102820"/>
-    <path d="M27 69V30.6c0-2.1 1.5-3.6 3.6-3.6h13.8c8.4 0 13.65 4.65 13.65 11.85 0 5.25-3 9.3-8.1 10.8L66.3 69h-8.1L45.3 48.9H34.8V69H27Zm7.8-27.3h9.6c4.05 0 6.6-2.25 6.6-5.7s-2.55-5.55-6.6-5.55h-9.6v11.25Z" fill="#F7F3EC"/>
-    <path d="M68.4 69c-7.65 0-12.6-4.95-12.6-12.75V31.2h7.65v24.75c0 4.05 2.1 6.45 6.15 6.45 1.65 0 2.85-.3 3.75-.75l1.35 6.45c-1.65.75-3.75 1.35-6.3 1.35Z" fill="#E8DDCC"/>
+  <circle cx="1020" cy="90" r="210" fill="#9EAF9D" fill-opacity="0.24"/>
+  <circle cx="140" cy="540" r="240" fill="#285B68" fill-opacity="0.12"/>
+  <g transform="translate(96 165)">
+    <rect width="108" height="108" rx="28" fill="#102820"/>
+    <path d="M54 14.2 79.2 40.8H70.2L86.4 62.4H75.6L92.4 84H15.6l16.8-21.6H21.6L37.8 40.8H28.8L54 14.2Z" fill="#F7F3EC"/>
+    <path d="M47.4 84h13.2v6.6H47.4V84Z" fill="#9EAF9D"/>
+    <path d="M18 95c10.2-6.4 17.8-6.4 28 0s17.8 6.4 28 0 17.8-6.4 28 0" fill="none" stroke="#E8DDCC" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/>
   </g>
-  <text x="220" y="230" fill="#102820" font-family="Georgia, 'Iowan Old Style', serif" font-size="64" font-weight="600">Harbour &amp; Pine Home</text>
-  <text x="220" y="290" fill="#285B68" font-family="Georgia, 'Iowan Old Style', serif" font-size="36">Thoughtful pieces for everyday living.</text>
-  <text x="96" y="520" fill="#242824" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="600">Che Xu Studio portfolio demonstration · en-CA · CAD</text>
+  <text x="236" y="228" fill="#102820" font-family="Georgia, 'Iowan Old Style', serif" font-size="64" font-weight="600">Harbour &amp; Pine Home</text>
+  <text x="236" y="286" fill="#285B68" font-family="Georgia, 'Iowan Old Style', serif" font-size="34">Thoughtful pieces for everyday living.</text>
+  <text x="96" y="520" fill="#242824" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="600">Mobile-first conversion &amp; product SEO · Che Xu Studio demo</text>
 </svg>

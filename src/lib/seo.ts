@@ -27,7 +27,12 @@ export function resolveRobots(demoMode = isDemoMode(import.meta.env.DEMO_MODE), 
   return 'index, follow';
 }
 
+export function brandLogoUrl(siteUrl: string = siteConfig.demoDomain): string {
+  return absoluteUrl(siteConfig.logoMarkPath, siteUrl);
+}
+
 export function websiteJsonLd(siteUrl: string = siteConfig.demoDomain) {
+  const logo = brandLogoUrl(siteUrl);
   return {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
@@ -39,7 +44,13 @@ export function websiteJsonLd(siteUrl: string = siteConfig.demoDomain) {
       '@type': 'Organization',
       name: siteConfig.name,
       url: siteUrl,
-      logo: absoluteUrl('/images/brand/logo-mark.svg', siteUrl),
+      logo: {
+        '@type': 'ImageObject',
+        url: logo,
+        width: 512,
+        height: 512,
+        caption: siteConfig.name,
+      },
     },
     potentialAction: {
       '@type': 'SearchAction',
@@ -50,15 +61,24 @@ export function websiteJsonLd(siteUrl: string = siteConfig.demoDomain) {
 }
 
 export function organizationJsonLd(siteUrl: string = siteConfig.demoDomain) {
+  const logo = brandLogoUrl(siteUrl);
   return {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: siteConfig.name,
-    alternateName: siteConfig.shortName,
+    alternateName: [siteConfig.shortName, 'Harbour and Pine Home'],
     url: siteUrl,
-    logo: absoluteUrl('/images/brand/logo-mark.svg', siteUrl),
+    logo: {
+      '@type': 'ImageObject',
+      url: logo,
+      width: 512,
+      height: 512,
+      caption: `${siteConfig.name} logo`,
+    },
+    image: logo,
     description: siteConfig.description,
     inLanguage: siteConfig.locale,
+    slogan: siteConfig.tagline,
   };
 }
 
