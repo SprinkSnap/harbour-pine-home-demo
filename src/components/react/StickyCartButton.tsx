@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import CartIcon, { CartCountBadge } from './CartIcon';
 import { useStore } from './store';
 
 const HIDDEN_PREFIXES = ['/cart', '/checkout', '/products/'];
@@ -19,11 +20,15 @@ export default function StickyCartButton() {
   return (
     <button
       type="button"
-      className="btn btn-primary safe-fab-left z-50 shadow-[var(--shadow-lift)] md:hidden"
-      aria-label={`Open demo cart, ${totals.itemCount} items`}
+      className="btn btn-primary safe-fab-left z-50 gap-2 px-3.5 shadow-[var(--shadow-lift)] md:hidden"
+      aria-label={`Open demo cart, ${totals.itemCount} ${totals.itemCount === 1 ? 'item' : 'items'}`}
       onClick={() => setCartOpen(true)}
     >
-      Cart ({totals.itemCount})
+      <span className="relative inline-flex">
+        <CartIcon size={22} active />
+        <CartCountBadge count={totals.itemCount} className="absolute -right-2 -top-2" />
+      </span>
+      <span className="text-sm font-semibold">Cart</span>
     </button>
   );
 }

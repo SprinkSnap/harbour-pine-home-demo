@@ -2,17 +2,22 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import CartPageView from '../components/react/CartPageView';
+import { breadcrumbJsonLd } from '../lib/seo';
 ---
 
 <BaseLayout
   title="Demo Cart"
-  description="Review your Harbour & Pine Home demonstration cart. No real order will be created."
+  description="Review your Harbour & Pine Home demonstration cart before the sample checkout. No real order or payment is created."
   path="/cart/"
   noindex={true}
+  jsonLd={breadcrumbJsonLd([
+    { name: 'Home', path: '/' },
+    { name: 'Demo Cart', path: '/cart/' },
+  ])}
 >
   <section class="section-space pt-8">
     <div class="container-page">
-      <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Cart' }]} />
+      <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Demo Cart' }]} />
       <div class="mt-6">
         <CartPageView client:load />
       </div>
