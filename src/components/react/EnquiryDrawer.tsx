@@ -1,9 +1,11 @@
 import { useEffect, useId, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import {
   businessTypes,
   launchTimingOptions,
   primaryGoals,
   productCountOptions,
+  recommendedStoreFeature,
   siteConfig,
   storeFeatures,
 } from '../../data/site';
@@ -33,7 +35,7 @@ const initialState: FormState = {
   existingWebsite: '',
   productCount: productCountOptions[0],
   primaryGoal: primaryGoals[0],
-  neededFeatures: [],
+  neededFeatures: [recommendedStoreFeature],
   launchTiming: launchTimingOptions[3],
   message: '',
   consent: false,
@@ -49,6 +51,11 @@ export default function EnquiryDrawer({ turnstileSiteKey = '' }: { turnstileSite
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [error, setError] = useState('');
   const [started, setStarted] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     if (!enquiryOpen) return;
@@ -68,7 +75,7 @@ export default function EnquiryDrawer({ turnstileSiteKey = '' }: { turnstileSite
     };
   }, [enquiryOpen, setEnquiryOpen, started]);
 
-  if (!enquiryOpen) return null;
+  if (!enquiryOpen || !mounted) return null;
 
   async function onSubmit(event: { preventDefault(): void }) {
     event.preventDefault();
@@ -100,8 +107,8 @@ export default function EnquiryDrawer({ turnstileSiteKey = '' }: { turnstileSite
     }
   }
 
-  return (
-    <div className="fixed inset-0 z-[80]" role="presentation">
+  return createPortal(
+    <div className="fixed inset-0 z-[100]" role="presentation">
       <button
         type="button"
         className="absolute inset-0 bg-pine-dark/45"
@@ -109,15 +116,15 @@ export default function EnquiryDrawer({ turnstileSiteKey = '' }: { turnstileSite
         onClick={() => setEnquiryOpen(false)}
       />
       <aside
-        className="absolute inset-y-0 right-0 flex w-full max-w-lg flex-col bg-porcelain shadow-[var(--shadow-lift)]"
+        className="absolute inset-y-0 right-0 flex h-dvh w-full max-w-lg flex-col bg-porcelain pb-[env(safe-area-inset-bottom)] shadow-[var(--shadow-lift)]"
         role="dialog"
         aria-modal="true"
         aria-labelledby={titleId}
       >
-        <div className="flex items-start justify-between gap-4 border-b border-sand px-5 py-4">
-          <div>
+        <div className="flex items-start justify-between gap-3 border-b border-sand px-4 py-4 sm:gap-4 sm:px-5">
+          <div className="min-w-0">
             <p className="eyebrow">Che Xu Studio</p>
-            <h2 id={titleId} className="mt-2 font-display text-2xl text-pine-dark">
+            <h2 id={titleId} className="mt-2 font-display text-xl text-pine-dark sm:text-2xl">
               Ready to Build a Store Designed Around Your Customers?
             </h2>
             <p className="mt-2 text-sm text-charcoal/80">
@@ -130,14 +137,14 @@ export default function EnquiryDrawer({ turnstileSiteKey = '' }: { turnstileSite
           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto px-5 py-4">
+        <div className="min-h-0 flex-1 overflow-y-auto px-4 py-4 sm:px-5">
           {status === 'success' ? (
             <div className="rounded-[var(--radius-lg)] border border-sage/50 bg-linen p-5" role="status">
               <p className="font-semibold text-pine-dark">Thanks — your store plan request was received.</p>
               <p className="mt-2 text-sm text-charcoal/80">
                 Che Xu Studio will review your details. This is the only genuine lead capture in the demonstration.
               </p>
-              <button type="button" className="btn btn-primary mt-4" onClick={() => setEnquiryOpen(false)}>
+              <button type="button" className="btn btn-primary mt-4 w-full sm:w-auto" onClick={() => setEnquiryOpen(false)}>
                 Continue browsing
               </button>
             </div>
@@ -236,13 +243,25 @@ export default function EnquiryDrawer({ turnstileSiteKey = '' }: { turnstileSite
               </div>
               <fieldset className="field">
                 <legend className="font-semibold text-pine-dark">Required store features</legend>
-                <div className="mt-2 grid gap-2 sm:grid-cols-2">
+                <p className="mt-1 text-sm text-charcoal/75">
+                  Select what you need. The recommended option is pre-selected for most new store builds.
+                </p>
+                <div className="mt-3 grid gap-2">
                   {storeFeatures.map((feature) => {
                     const checked = form.neededFeatures.includes(feature);
+                    const recommended = feature === recommendedStoreFeature;
                     return (
-                      <label key={feature} className="flex items-center gap-2 text-sm">
+                      <label
+                        key={feature}
+                        className={`flex min-h-12 cursor-pointer items-start gap-3 rounded-[var(--radius-lg)] border px-3 py-3 text-sm transition ${
+                          recommended
+                            ? 'border-harbour/40 bg-linen/80'
+                            : 'border-sand bg-porcelain'
+                        } ${checked ? 'ring-1 ring-harbour/50' : ''}`}
+                      >
                         <input
                           type="checkbox"
+                          className="mt-0.5 h-5 w-5 shrink-0 accent-harbour"
                           checked={checked}
                           onChange={() =>
                             setForm((prev) => ({
@@ -253,7 +272,21 @@ export default function EnquiryDrawer({ turnstileSiteKey = '' }: { turnstileSite
                             }))
                           }
                         />
-                        {feature}
+                        <span className="min-w-0 flex-1 leading-snug">
+                          <span className="flex flex-wrap items-center gap-2">
+                            <span className="font-semibold text-pine-dark">{feature}</span>
+                            {recommended ? (
+                              <span className="rounded-md bg-harbour px-2 py-0.5 text-[0.7rem] font-bold uppercase tracking-[0.06em] text-porcelain">
+                                Recommended
+                              </span>
+                            ) : null}
+                          </span>
+                          {recommended ? (
+                            <span className="mt-1 block text-xs text-charcoal/75">
+                              Best starting point: phone-ready shopping flows plus product SEO foundations.
+                            </span>
+                          ) : null}
+                        </span>
                       </label>
                     );
                   })}
@@ -283,14 +316,15 @@ export default function EnquiryDrawer({ turnstileSiteKey = '' }: { turnstileSite
                   onChange={(e) => setForm((prev) => ({ ...prev, message: e.target.value }))}
                 />
               </div>
-              <label className="flex items-start gap-2 text-sm">
+              <label className="flex min-h-12 cursor-pointer items-start gap-3 rounded-[var(--radius-lg)] border border-sand px-3 py-3 text-sm">
                 <input
                   type="checkbox"
+                  className="mt-0.5 h-5 w-5 shrink-0 accent-harbour"
                   checked={form.consent}
                   required
                   onChange={(e) => setForm((prev) => ({ ...prev, consent: e.target.checked }))}
                 />
-                <span>
+                <span className="leading-snug text-charcoal/90">
                   I consent to Che Xu Studio contacting me about store planning. My details will be stored only for
                   this enquiry.
                 </span>
@@ -306,11 +340,7 @@ export default function EnquiryDrawer({ turnstileSiteKey = '' }: { turnstileSite
                 />
               </div>
               {turnstileSiteKey ? (
-                <div
-                  className="cf-turnstile"
-                  data-sitekey={turnstileSiteKey}
-                  data-theme="light"
-                />
+                <div className="cf-turnstile" data-sitekey={turnstileSiteKey} data-theme="light" />
               ) : (
                 <p className="text-xs text-charcoal/70">
                   Local development: Turnstile uses a secure bypass token when no site key is configured.
@@ -322,12 +352,12 @@ export default function EnquiryDrawer({ turnstileSiteKey = '' }: { turnstileSite
                 </p>
               ) : null}
               <div className="grid gap-2 sm:grid-cols-2">
-                <button type="submit" className="btn btn-clay" disabled={status === 'submitting'}>
+                <button type="submit" className="btn btn-clay w-full" disabled={status === 'submitting'}>
                   {status === 'submitting' ? 'Sending…' : 'Request My Store Plan'}
                 </button>
                 <a
                   href={siteConfig.packagesUrl}
-                  className="btn btn-secondary"
+                  className="btn btn-secondary w-full"
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => trackEvent('che_xu_cta_selected', { cta: 'packages' })}
@@ -339,6 +369,7 @@ export default function EnquiryDrawer({ turnstileSiteKey = '' }: { turnstileSite
           )}
         </div>
       </aside>
-    </div>
+    </div>,
+    document.body,
   );
 }
