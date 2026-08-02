@@ -83,13 +83,16 @@
 
   body.is-nav-open,
   body.is-drawer-open,
-  body.is-filters-open {
+  body.is-filters-open,
+  body.is-chat-open {
     overflow: hidden;
   }
 
   body.is-nav-open .portfolio-bar,
   body.is-nav-open .safe-fab-left,
-  body.is-nav-open .safe-fab-right {
+  body.is-nav-open .safe-fab-right,
+  body.is-chat-open .safe-fab-left,
+  body.is-chat-open .safe-fab-right {
     visibility: hidden;
   }
 
