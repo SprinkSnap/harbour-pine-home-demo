@@ -29,6 +29,28 @@ function IconHeart() {
   );
 }
 
+function IconMenu({ open = false }: { open?: boolean }) {
+  return (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      {open ? (
+        <path
+          d="M6.5 6.5 17.5 17.5M17.5 6.5 6.5 17.5"
+          stroke="currentColor"
+          strokeWidth="1.8"
+          strokeLinecap="round"
+        />
+      ) : (
+        <path
+          d="M4.5 7h15M4.5 12h15M4.5 17h15"
+          stroke="currentColor"
+          strokeWidth="1.8"
+          strokeLinecap="round"
+        />
+      )}
+    </svg>
+  );
+}
+
 export default function HeaderControls() {
   const { totals, wishlistIds, setCartOpen, setEnquiryOpen } = useStore();
   const [menuOpen, setMenuOpen] = useState(false);
@@ -80,8 +102,14 @@ export default function HeaderControls() {
             >
               <div className="flex items-center justify-between border-b border-sand px-4 py-4">
                 <p className="font-display text-xl text-pine-dark">{siteConfig.shortName}</p>
-                <button ref={closeButtonRef} type="button" className="btn btn-ghost" onClick={() => setMenuOpen(false)}>
-                  Close
+                <button
+                  ref={closeButtonRef}
+                  type="button"
+                  className="btn btn-ghost min-h-11 min-w-11 px-2"
+                  aria-label="Close menu"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  <IconMenu open />
                 </button>
               </div>
               <div className="min-h-0 flex-1 overflow-y-auto px-4 py-4">
@@ -216,12 +244,13 @@ export default function HeaderControls() {
         <button
           ref={openButtonRef}
           type="button"
-          className="btn btn-secondary min-h-11 px-3 lg:hidden"
+          className="btn btn-secondary min-h-11 min-w-11 px-2 lg:hidden"
+          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={menuOpen}
           aria-controls={menuId}
-          onClick={() => setMenuOpen(true)}
+          onClick={() => setMenuOpen((open) => !open)}
         >
-          Menu
+          <IconMenu open={menuOpen} />
         </button>
       </div>
       {menu}
