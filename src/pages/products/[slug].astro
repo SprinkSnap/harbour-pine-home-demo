@@ -7,7 +7,8 @@ import ProductGallery from '../../components/react/ProductGallery';
 import { getCollection } from '../../data/collections';
 import { getProductBySlug, getRelatedProducts, products } from '../../data/products';
 import { formatCad } from '../../lib/money';
-import { breadcrumbJsonLd } from '../../lib/seo';
+import { isDemoMode, shouldEmitProductSchema } from '../../lib/demo-mode';
+import { breadcrumbJsonLd, productJsonLd } from '../../lib/seo';
 import { siteConfig } from '../../data/site';
 
 export function getStaticPaths() {
@@ -21,6 +22,17 @@ if (!product) {
 }
 const collection = getCollection(product.collection);
 const related = getRelatedProducts(product, 4);
+const demoMode = isDemoMode(import.meta.env.DEMO_MODE ?? 'true');
+const siteUrl = import.meta.env.PUBLIC_SITE_URL ?? siteConfig.demoDomain;
+const schemas = [
+  breadcrumbJsonLd([
+    { name: 'Home', path: '/' },
+    { name: 'Shop', path: '/shop/' },
+    { name: collection?.name ?? 'Collection', path: `/collections/${product.collection}/` },
+    { name: product.name, path: `/products/${product.slug}/` },
+  ]),
+  ...(shouldEmitProductSchema(demoMode) ? [productJsonLd(product, siteUrl)] : []),
+];
 ---
 
 <BaseLayout
@@ -28,12 +40,8 @@ const related = getRelatedProducts(product, 4);
   description={product.seoDescription}
   path={`/products/${product.slug}/`}
   ogImage={product.images[0]?.src}
-  jsonLd={breadcrumbJsonLd([
-    { name: 'Home', path: '/' },
-    { name: 'Shop', path: '/shop/' },
-    { name: collection?.name ?? 'Collection', path: `/collections/${product.collection}/` },
-    { name: product.name, path: `/products/${product.slug}/` },
-  ])}
+  ogType={shouldEmitProductSchema(demoMode) ? 'product' : 'website'}
+  jsonLd={schemas}
 >
   <section class="section-space pt-8">
     <div class="container-page">
@@ -49,7 +57,7 @@ const related = getRelatedProducts(product, 4);
         <ProductGallery client:load images={product.images} productName={product.name} />
         <div>
           <p class="eyebrow">{collection?.name}</p>
-          <h1 class="mt-2 font-display text-4xl text-pine-dark">{product.name}</h1>
+          <h1 class="mt-2 font-display text-3xl text-pine-dark sm:text-4xl">{product.name}</h1>
           <p class="mt-2 text-sm text-charcoal/70">Price: {formatCad(product.price)} CAD</p>
           <p class="mt-4 text-charcoal/80">{product.shortDescription}</p>
           <div class="mt-6">

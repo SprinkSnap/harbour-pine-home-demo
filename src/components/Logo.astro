@@ -6,18 +6,24 @@ interface Props {
 const { class: className = '', compact = false } = Astro.props;
 ---
 
-<a href="/" class:list={['group inline-flex items-center gap-3 no-underline', className]} aria-label="Harbour & Pine Home home">
-  <span class="grid h-11 w-11 place-items-center rounded-[0.9rem] bg-pine-dark text-sand shadow-[var(--shadow-soft)]" aria-hidden="true">
-    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+<a href="/" class:list={['group inline-flex min-w-0 items-center gap-2 no-underline sm:gap-3', className]} aria-label="Harbour & Pine Home home">
+  <span
+    class="grid h-9 w-9 shrink-0 place-items-center rounded-[0.75rem] bg-pine-dark text-sand shadow-[var(--shadow-soft)] sm:h-11 sm:w-11 sm:rounded-[0.9rem]"
+    aria-hidden="true"
+  >
+    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 sm:h-7 sm:w-7">
       <path d="M6 20.5V8.2c0-.7.5-1.2 1.2-1.2h4.3c2.7 0 4.4 1.5 4.4 3.8 0 1.7-1 3-2.6 3.5L17.8 21h-2.5l-4-6.3H8.5V21H6Zm2.5-8.5h3c1.3 0 2.1-.7 2.1-1.8S12.8 9.3 11.5 9.3h-3v2.7Z" fill="currentColor"/>
       <path d="M19.2 21c-2.5 0-4.1-1.6-4.1-4.1V8.8h2.4v7.8c0 1.3.7 2.1 2 2.1.5 0 .9-.1 1.2-.2l.4 2c-.5.3-1.2.5-1.9.5Z" fill="#E8DDCC"/>
     </svg>
   </span>
   {
     !compact && (
-      <span class="leading-tight">
-        <span class="block font-display text-lg text-pine-dark group-hover:text-pine">Harbour & Pine Home</span>
-        <span class="block text-xs font-semibold tracking-[0.04em] text-harbour">Thoughtful pieces for everyday living.</span>
+      <span class="min-w-0 leading-tight">
+        <span class="block font-display text-base text-pine-dark group-hover:text-pine sm:text-lg">
+          <span class="md:hidden">Harbour & Pine</span>
+          <span class="hidden md:inline">Harbour & Pine Home</span>
+        </span>
+        <span class="mt-0.5 hidden text-xs font-semibold tracking-[0.04em] text-harbour lg:block">Thoughtful pieces for everyday living.</span>
       </span>
     )
   }

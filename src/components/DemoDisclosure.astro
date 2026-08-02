@@ -3,14 +3,21 @@ import { siteConfig } from '../data/site';
 ---
 
 <div class="demo-banner">
-  <div class="container-page flex flex-wrap items-center justify-between gap-2 py-2.5 text-sm">
-    <p>
+  <div class="container-page flex items-center justify-between gap-3 py-2 text-sm">
+    <p class="min-w-0 flex-1 truncate sm:whitespace-normal sm:overflow-visible">
       <strong>Portfolio concept by Che Xu Studio.</strong>
-      {' '}
-      Harbour & Pine Home is a fictional e-commerce demonstration. {siteConfig.disclosure}
+      <span class="hidden sm:inline">
+        {' '}
+        Harbour & Pine Home is a fictional e-commerce demonstration. {siteConfig.disclosure}
+      </span>
     </p>
-    <a href={siteConfig.caseStudyUrl} class="font-semibold text-pine underline" target="_blank" rel="noopener noreferrer">
-      View case study
+    <a
+      href={siteConfig.caseStudyUrl}
+      class="shrink-0 font-semibold text-pine underline"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Case study
     </a>
   </div>
 </div>

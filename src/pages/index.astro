@@ -13,6 +13,7 @@ import {
   siteConfig,
 } from '../data/site';
 import { formatCad } from '../lib/money';
+import { breadcrumbJsonLd, faqJsonLd } from '../lib/seo';
 
 const featured = getFeaturedProducts(8);
 ---
@@ -21,6 +22,10 @@ const featured = getFeaturedProducts(8);
   title="Thoughtful Pieces for Everyday Living"
   description="Harbour & Pine Home is a fictional Canadian home and lifestyle storefront by Che Xu Studio featuring product discovery, accessible checkout and conversion-focused design."
   path="/"
+  jsonLd={[
+    breadcrumbJsonLd([{ name: 'Home', path: '/' }]),
+    faqJsonLd([...faqs]),
+  ]}
 >
   <section class="relative isolate overflow-hidden">
     <img
@@ -33,22 +38,21 @@ const featured = getFeaturedProducts(8);
       decoding="async"
     />
     <div class="absolute inset-0 -z-10 bg-gradient-to-r from-linen/95 via-linen/82 to-linen/35"></div>
-    <div class="container-page flex min-h-[78vh] items-center py-14 md:py-20">
+    <div class="container-page flex min-h-[min(62vh,28rem)] items-end py-8 sm:min-h-[70vh] sm:items-center sm:py-14 md:min-h-[78vh] md:py-20">
       <div class="max-w-xl fade-up">
-        <p class="font-display text-3xl text-pine-dark md:text-4xl">{siteConfig.name}</p>
-        <p class="eyebrow mt-4">Modern Home Essentials</p>
-        <h1 class="mt-3 font-display text-4xl text-pine-dark md:text-5xl lg:text-[3.4rem]">
+        <p class="font-display text-2xl text-pine-dark sm:text-3xl md:text-4xl">{siteConfig.name}</p>
+        <h1 class="mt-2 font-display text-[1.85rem] leading-tight text-pine-dark sm:mt-3 sm:text-4xl md:text-5xl lg:text-[3.4rem]">
           Thoughtful Pieces for Everyday Living.
         </h1>
-        <p class="mt-5 text-lg text-charcoal/80">
-          A curated collection of practical, beautifully designed objects created to make everyday spaces feel more comfortable and considered.
+        <p class="mt-3 text-base text-charcoal/80 sm:mt-5 sm:text-lg">
+          Practical, beautifully designed objects for everyday spaces—curated as a Che Xu Studio storefront demonstration.
         </p>
-        <div class="mt-7 flex flex-wrap gap-3">
-          <a href="/collections/" class="btn btn-primary">Shop the Collection</a>
-          <a href="/shop/?filter=new" class="btn btn-secondary">Explore New Arrivals</a>
-          <button type="button" class="btn btn-clay" data-open-enquiry>Build a Store Like This</button>
+        <div class="mt-5 flex flex-col gap-3 sm:mt-7 sm:flex-row sm:flex-wrap">
+          <a href="/collections/" class="btn btn-primary w-full sm:w-auto">Shop the Collection</a>
+          <a href="/shop/?filter=new" class="btn btn-secondary w-full sm:w-auto">Explore New Arrivals</a>
+          <button type="button" class="btn btn-clay hidden sm:inline-flex" data-open-enquiry>Build a Store Like This</button>
         </div>
-        <p class="mt-5 text-sm text-charcoal/70">{siteConfig.disclosure}</p>
+        <p class="mt-3 text-sm text-charcoal/70 sm:mt-5">{siteConfig.disclosure}</p>
       </div>
     </div>
   </section>
@@ -133,7 +137,7 @@ const featured = getFeaturedProducts(8);
               <a href={room.href} class="group block no-underline">
                 <img
                   src={room.image}
-                  alt=""
+                  alt={`${room.title} mood board for Harbour & Pine Home`}
                   width="1200"
                   height="1200"
                   class="aspect-square rounded-[var(--radius-lg)] object-cover"

@@ -4,9 +4,11 @@ import Logo from './Logo.astro';
 import HeaderControls from './react/HeaderControls';
 ---
 
-<header class="sticky top-0 z-50 border-b border-sand/80 bg-porcelain/90 backdrop-blur-md">
-  <div class="container-page flex min-h-[4.5rem] items-center justify-between gap-4 py-3">
-    <Logo />
+<header class="sticky top-0 z-50 border-b border-sand/80 bg-porcelain/95 supports-[backdrop-filter]:bg-porcelain/90 supports-[backdrop-filter]:backdrop-blur-md">
+  <div class="container-page flex min-h-14 items-center justify-between gap-3 py-2 sm:min-h-[4.5rem] sm:gap-4 sm:py-3">
+    <div class="min-w-0 flex-1">
+      <Logo />
+    </div>
     <nav class="hidden items-center gap-1 lg:flex" aria-label="Primary">
       {
         navPrimary.map((item) => (
