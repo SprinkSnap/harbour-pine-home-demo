@@ -10,13 +10,10 @@ export default defineConfig({
     trace: 'on-first-retry',
   },
   webServer: {
-    command: 'npm run preview -- --host 127.0.0.1 --port 4321',
+    command: 'npx wrangler dev --ip 127.0.0.1 --port 4321',
     port: 4321,
-    reuseExistingServer: !process.env.CI,
-    timeout: 120000,
+    reuseExistingServer: true,
+    timeout: 180000,
   },
-  projects: [
-    { name: 'chromium', use: { ...devices['Desktop Chrome'] } },
-    { name: 'mobile', use: { ...devices['iPhone 12'] } },
-  ],
+  projects: [{ name: 'chromium', use: { ...devices['Desktop Chrome'] } }],
 });

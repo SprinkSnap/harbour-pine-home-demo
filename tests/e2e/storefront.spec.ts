@@ -43,7 +43,7 @@ test.describe('Harbour & Pine storefront', () => {
     const menuButton = page.getByRole('button', { name: 'Menu' });
     await menuButton.click();
     await expect(page.getByRole('navigation', { name: 'Mobile' })).toBeVisible();
-    await page.getByRole('button', { name: 'Close' }).click();
+    await page.getByRole('navigation', { name: 'Mobile' }).getByRole('button', { name: 'Close', exact: true }).click();
     await expect(page.getByRole('navigation', { name: 'Mobile' })).toHaveCount(0);
   });
 });

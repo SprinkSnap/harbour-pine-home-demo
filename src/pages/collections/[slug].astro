@@ -1,21 +1,19 @@
 ---
+export const prerender = false;
+
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import ProductCard from '../../components/ProductCard.astro';
 import ShopFilters from '../../components/react/ShopFilters';
-import { collections, getCollection } from '../../data/collections';
+import { getCollection } from '../../data/collections';
 import { products } from '../../data/products';
 import { breadcrumbJsonLd } from '../../lib/seo';
 import { filterProducts, parseFilterParams } from '../../lib/product-filters';
 
-export function getStaticPaths() {
-  return collections.map((collection) => ({ params: { slug: collection.slug } }));
-}
-
 const { slug } = Astro.params;
 const collection = getCollection(slug!);
 if (!collection) {
-  return Astro.redirect('/404/');
+  return new Response(null, { status: 404, statusText: 'Not Found' });
 }
 
 const state = parseFilterParams(Astro.url.searchParams);
