@@ -1,29 +1,44 @@
 ---
+import { siteConfig } from '../data/site';
+import LogoMark from './LogoMark.astro';
+
 interface Props {
   class?: string;
   compact?: boolean;
+  /** Use on dark surfaces such as the footer. */
+  tone?: 'default' | 'on-dark';
+  /** Optional larger lockup for hero brand moments. */
+  size?: 'sm' | 'md' | 'lg' | 'responsive';
 }
-const { class: className = '', compact = false } = Astro.props;
+const { class: className = '', compact = false, tone = 'default', size = 'responsive' } = Astro.props;
+
+const titleClass =
+  size === 'lg'
+    ? 'text-2xl sm:text-3xl'
+    : size === 'sm'
+      ? 'text-base'
+      : 'text-base sm:text-[1.05rem] lg:text-lg';
+
+const nameClass = tone === 'on-dark' ? 'text-sand group-hover:text-sand' : 'text-pine-dark group-hover:text-pine';
+const taglineClass = tone === 'on-dark' ? 'text-sage' : 'text-harbour';
 ---
 
-<a href="/" class:list={['group inline-flex min-w-0 items-center gap-2 no-underline sm:gap-3', className]} aria-label="Harbour & Pine Home home">
-  <span
-    class="grid h-9 w-9 shrink-0 place-items-center rounded-[0.75rem] bg-pine-dark text-sand shadow-[var(--shadow-soft)] sm:h-11 sm:w-11 sm:rounded-[0.9rem]"
-    aria-hidden="true"
-  >
-    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 sm:h-7 sm:w-7">
-      <path d="M6 20.5V8.2c0-.7.5-1.2 1.2-1.2h4.3c2.7 0 4.4 1.5 4.4 3.8 0 1.7-1 3-2.6 3.5L17.8 21h-2.5l-4-6.3H8.5V21H6Zm2.5-8.5h3c1.3 0 2.1-.7 2.1-1.8S12.8 9.3 11.5 9.3h-3v2.7Z" fill="currentColor"/>
-      <path d="M19.2 21c-2.5 0-4.1-1.6-4.1-4.1V8.8h2.4v7.8c0 1.3.7 2.1 2 2.1.5 0 .9-.1 1.2-.2l.4 2c-.5.3-1.2.5-1.9.5Z" fill="#E8DDCC"/>
-    </svg>
-  </span>
+<a
+  href="/"
+  class:list={['group inline-flex min-w-0 max-w-full items-center gap-2.5 no-underline sm:gap-3', className]}
+  aria-label={`${siteConfig.name} home`}
+>
+  <LogoMark size={size} tone={tone} />
   {
     !compact && (
       <span class="min-w-0 leading-tight">
-        <span class="block font-display text-base text-pine-dark group-hover:text-pine sm:text-lg">
-          <span class="md:hidden">Harbour & Pine</span>
-          <span class="hidden md:inline">Harbour & Pine Home</span>
+        <span class:list={['block whitespace-nowrap font-display tracking-[-0.02em]', titleClass, nameClass]}>
+          <span class="lg:hidden">{siteConfig.shortName}</span>
+          <span class="hidden lg:inline">{siteConfig.name}</span>
         </span>
-        <span class="mt-0.5 hidden text-xs font-semibold tracking-[0.04em] text-harbour lg:block">Thoughtful pieces for everyday living.</span>
+        <span class:list={['mt-0.5 hidden text-xs font-semibold tracking-[0.04em] lg:block', taglineClass]}>
+          {siteConfig.tagline}
+        </span>
       </span>
     )
   }

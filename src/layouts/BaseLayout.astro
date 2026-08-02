@@ -7,7 +7,7 @@ import AppShell from '../components/react/AppShell';
 import AiAssistant from '../components/react/AiAssistant';
 import { siteConfig } from '../data/site';
 import { isDemoMode } from '../lib/demo-mode';
-import { absoluteUrl, buildTitle, resolveRobots, websiteJsonLd } from '../lib/seo';
+import { absoluteUrl, buildTitle, organizationJsonLd, resolveRobots, websiteJsonLd } from '../lib/seo';
 
 interface Props {
   title: string;
@@ -35,9 +35,11 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? '';
 const pageTitle = buildTitle(title);
 const canonical = absoluteUrl(path, siteUrl);
 const robots = resolveRobots(demoMode, noindex);
-const schemas = [websiteJsonLd(siteUrl), ...(Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : [])].filter(
-  Boolean,
-);
+const schemas = [
+  websiteJsonLd(siteUrl),
+  organizationJsonLd(siteUrl),
+  ...(Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : []),
+].filter(Boolean);
 ---
 
 <!doctype html>
@@ -51,6 +53,9 @@ const schemas = [websiteJsonLd(siteUrl), ...(Array.isArray(jsonLd) ? jsonLd : js
     <meta name="robots" content={robots} />
     <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/images/brand/apple-touch-icon.svg" />
+    <meta name="application-name" content={siteConfig.shortName} />
+    <meta name="apple-mobile-web-app-title" content={siteConfig.shortName} />
     <meta property="og:type" content={ogType} />
     <meta property="og:locale" content="en_CA" />
     <meta property="og:site_name" content={siteConfig.name} />

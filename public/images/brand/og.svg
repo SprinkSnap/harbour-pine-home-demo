@@ -1,9 +1,20 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
-  <rect width="1200" height="630" fill="#102820"/>
-  <circle cx="980" cy="120" r="160" fill="#285B68" opacity="0.35"/>
-  <circle cx="160" cy="540" r="180" fill="#9EAF9D" opacity="0.25"/>
-  <text x="80" y="250" font-family="Georgia, serif" font-size="72" fill="#FFFEFB">Harbour &amp; Pine Home</text>
-  <text x="80" y="330" font-family="Arial, sans-serif" font-size="34" fill="#E8DDCC">Thoughtful pieces for everyday living.</text>
-  <text x="80" y="520" font-family="Arial, sans-serif" font-size="24" fill="#9EAF9D">Portfolio concept by Che Xu Studio</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Harbour & Pine Home">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#F7F3EC"/>
+      <stop offset="55%" stop-color="#FFFEFB"/>
+      <stop offset="100%" stop-color="#E8DDCC"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="980" cy="120" r="180" fill="#9EAF9D" fill-opacity="0.28"/>
+  <circle cx="180" cy="520" r="220" fill="#285B68" fill-opacity="0.12"/>
+  <g transform="translate(96 168)">
+    <rect width="96" height="96" rx="24" fill="#102820"/>
+    <path d="M27 69V30.6c0-2.1 1.5-3.6 3.6-3.6h13.8c8.4 0 13.65 4.65 13.65 11.85 0 5.25-3 9.3-8.1 10.8L66.3 69h-8.1L45.3 48.9H34.8V69H27Zm7.8-27.3h9.6c4.05 0 6.6-2.25 6.6-5.7s-2.55-5.55-6.6-5.55h-9.6v11.25Z" fill="#F7F3EC"/>
+    <path d="M68.4 69c-7.65 0-12.6-4.95-12.6-12.75V31.2h7.65v24.75c0 4.05 2.1 6.45 6.15 6.45 1.65 0 2.85-.3 3.75-.75l1.35 6.45c-1.65.75-3.75 1.35-6.3 1.35Z" fill="#E8DDCC"/>
+  </g>
+  <text x="220" y="230" fill="#102820" font-family="Georgia, 'Iowan Old Style', serif" font-size="64" font-weight="600">Harbour &amp; Pine Home</text>
+  <text x="220" y="290" fill="#285B68" font-family="Georgia, 'Iowan Old Style', serif" font-size="36">Thoughtful pieces for everyday living.</text>
+  <text x="96" y="520" fill="#242824" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="600">Che Xu Studio portfolio demonstration · en-CA · CAD</text>
 </svg>
