@@ -166,20 +166,27 @@ npm run build
 npm run cf:dry-run
 ```
 
-Cloudflare Workers Builds is configured to run:
+### Cloudflare Workers Builds settings
 
-```bash
-npm run deploy
-```
+In the Cloudflare dashboard for this Worker, set:
 
-That script builds the Astro site and deploys with Wrangler:
+| Setting | Value |
+| --- | --- |
+| **Build command** | `npm run deploy` |
+| **Deploy command** | leave empty / unused |
+| **Root directory** | `/` (repo root) |
+
+Do **not** use a raw shell command like `npm run build && wrangler deploy`.
+
+- Wrangler is a local npm dependency, so PATH lookups for bare `wrangler` fail in CI
+- The repo script uses `npx wrangler` and also applies D1 migrations
 
 ```bash
 npm run deploy          # production worker: harbour-pine-home-demo
 npm run deploy:staging  # staging worker: harbour-pine-home-demo-staging
 ```
 
-Do **not** deploy from a local machine without explicit authorization. CI deploy requires Cloudflare account credentials configured in the Workers/Pages project.
+Do **not** deploy from a local machine without explicit authorization. CI deploy requires Cloudflare account credentials configured in the Workers project.
 
 ## Custom domain
 
