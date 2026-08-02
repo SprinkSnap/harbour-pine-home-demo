@@ -25,8 +25,12 @@ const taglineClass = tone === 'on-dark' ? 'text-sage' : 'text-harbour';
 
 <a
   href="/"
-  class:list={['group inline-flex min-w-0 max-w-full items-center gap-2.5 no-underline sm:gap-3', className]}
+  class:list={[
+    'group inline-flex min-w-0 max-w-full items-center gap-2.5 no-underline transition duration-[var(--duration-fast)] sm:gap-3',
+    className,
+  ]}
   aria-label={`${siteConfig.name} home`}
+  title={siteConfig.name}
 >
   <LogoMark size={size} tone={tone} />
   {
@@ -36,7 +40,7 @@ const taglineClass = tone === 'on-dark' ? 'text-sage' : 'text-harbour';
           <span class="lg:hidden">{siteConfig.shortName}</span>
           <span class="hidden lg:inline">{siteConfig.name}</span>
         </span>
-        <span class:list={['mt-0.5 hidden text-xs font-semibold tracking-[0.04em] lg:block', taglineClass]}>
+        <span class:list={['mt-0.5 hidden text-xs font-semibold tracking-[0.05em] lg:block', taglineClass]}>
           {siteConfig.tagline}
         </span>
       </span>
