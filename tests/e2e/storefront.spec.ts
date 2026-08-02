@@ -41,7 +41,7 @@ test.describe('Harbour & Pine storefront', () => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto('/');
     await expect(page.getByRole('banner').getByRole('button', { name: /Open demo cart/i })).toBeVisible();
-    const menuButton = page.getByRole('banner').getByRole('button', { name: 'Menu' });
+    const menuButton = page.getByRole('banner').getByRole('button', { name: /Open menu/i });
     await expect(menuButton).toBeVisible();
     await menuButton.click();
     const nav = page.getByRole('navigation', { name: 'Mobile' });
@@ -50,7 +50,7 @@ test.describe('Harbour & Pine storefront', () => {
     await expect(nav.getByRole('link', { name: 'Collections' })).toBeVisible();
     const box = await nav.boundingBox();
     expect(box?.height ?? 0).toBeGreaterThan(700);
-    await nav.getByRole('button', { name: 'Close', exact: true }).click();
+    await nav.getByRole('button', { name: /Close menu/i }).click();
     await expect(page.getByRole('navigation', { name: 'Mobile' })).toHaveCount(0);
   });
 });
