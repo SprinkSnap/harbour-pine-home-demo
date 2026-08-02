@@ -28,3 +28,16 @@ That fails for two reasons:
 1. `astro build`
 2. `npx wrangler deploy`
 3. `npx wrangler d1 migrations apply DB --remote`
+
+## SESSION KV
+
+Astro’s Cloudflare adapter expects a `SESSION` KV binding. The first successful provisioning created:
+
+- title: `harbour-pine-home-demo-session`
+- id: `af67741f41f74c04a9f2f13a9b073a71`
+
+That id is pinned in `wrangler.jsonc`. Without it, later CI deploys try to create the same title again and fail with Cloudflare API `10014`.
+
+## D1
+
+`harbour-pine-leads` is left without `database_id` so the first successful deploy can auto-provision it. After that succeeds, you may optionally paste the provisioned UUID into `wrangler.jsonc`.

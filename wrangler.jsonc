@@ -11,9 +11,15 @@
   "observability": {
     "enabled": true
   },
-  // Omit database_id so Cloudflare Workers Builds can auto-provision D1 on deploy
-  // (same pattern as the Astro SESSION KV binding). After first deploy, optionally
-  // write the provisioned UUID back here for clearer local remote tooling.
+  // Pin the SESSION KV created on the first CI deploy. Leaving this unbound makes
+  // Wrangler try to recreate "harbour-pine-home-demo-session" and fail with API 10014.
+  "kv_namespaces": [
+    {
+      "binding": "SESSION",
+      "id": "af67741f41f74c04a9f2f13a9b073a71"
+    }
+  ],
+  // Omit database_id so Cloudflare Workers Builds can auto-provision D1 on first deploy.
   "d1_databases": [
     {
       "binding": "DB",
