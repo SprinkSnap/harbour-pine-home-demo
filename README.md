@@ -155,14 +155,27 @@ npm run test:e2e
 npm run test:a11y
 ```
 
-## Build and dry-run deployment
+## Build and deployment
 
 ```bash
 npm run build
 npm run cf:dry-run
 ```
 
-Do **not** deploy without explicit authorization.
+Cloudflare Workers Builds is configured to run:
+
+```bash
+npm run deploy
+```
+
+That script builds the Astro site and deploys with Wrangler:
+
+```bash
+npm run deploy          # production worker: harbour-pine-home-demo
+npm run deploy:staging  # staging worker: harbour-pine-home-demo-staging
+```
+
+Do **not** deploy from a local machine without explicit authorization. CI deploy requires Cloudflare account credentials configured in the Workers/Pages project.
 
 ## Custom domain
 
