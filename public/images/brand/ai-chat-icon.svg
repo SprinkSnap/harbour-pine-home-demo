@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="Che Xu Studio demo shopping assistant">
+  <rect width="512" height="512" rx="128" fill="#102820"/>
+  <path d="M106.7 136.5A72.5 72.5 0 0 1 179.2 64h153.6a72.5 72.5 0 0 1 72.5 72.5v123.7a72.5 72.5 0 0 1-72.5 72.5H236.8l-78.9 66.1c-14.9 12.5-36.3 2.1-36.3-17.1v-49A72.5 72.5 0 0 1 106.7 259.2V136.5Z" fill="none" stroke="#F7F3EC" stroke-width="28" stroke-linejoin="round"/>
+  <path d="M256 125.9 310.4 199.5h-26.7L322.1 253.9h-28.8L325.3 302.9H186.7l33.1-49H189.9l38.4-54.4h-26.7L256 125.9Z" fill="#F7F3EC"/>
+  <path d="M241.1 302.9h29.9v18.1h-29.9v-18.1Z" fill="#9EAF9D"/>
+  <path d="M177.1 342.4c22.4-14.5 39.5-14.5 61.9 0s39.5 14.5 61.9 0 39.5-14.5 61.9 0" fill="none" stroke="#E8DDCC" stroke-width="26" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

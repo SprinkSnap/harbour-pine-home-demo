@@ -2,6 +2,7 @@ import { useEffect, useId, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { siteConfig } from '../../data/site';
 import { trackEvent } from '../../lib/analytics';
+import ChatIcon from './ChatIcon';
 import { useStore } from './store';
 
 type Message = { role: 'assistant' | 'user'; content: string };
@@ -17,20 +18,6 @@ const quickActions = [
 
 const welcomeMessage =
   'Hi — I’m the Harbour & Pine demo assistant from Che Xu Studio. I can help you explore this fictional catalogue, explain the demo checkout, or start a store-plan enquiry. Harbour & Pine Home is not a real store.';
-
-function ChatIcon({ size = 20 }: { size?: number }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path
-        d="M5 6.5A3.5 3.5 0 0 1 8.5 3h7A3.5 3.5 0 0 1 19 6.5v6A3.5 3.5 0 0 1 15.5 16H11l-3.8 3.2c-.7.6-1.7.1-1.7-.8V16A3.5 3.5 0 0 1 5 12.5v-6Z"
-        stroke="currentColor"
-        strokeWidth="1.7"
-        strokeLinejoin="round"
-      />
-      <path d="M8.5 8.5h7M8.5 11.5h4.5" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
-    </svg>
-  );
-}
 
 function CloseIcon() {
   return (
@@ -146,7 +133,7 @@ export default function AiAssistant() {
               <div className="flex items-start justify-between gap-3 border-b border-sand bg-linen/70 px-4 py-3.5">
                 <div className="flex min-w-0 items-start gap-3">
                   <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-pine-dark text-sand shadow-[var(--shadow-soft)]">
-                    <ChatIcon size={20} />
+                    <ChatIcon size={22} />
                   </span>
                   <div className="min-w-0">
                     <p className="text-[0.7rem] font-bold uppercase tracking-[0.08em] text-harbour">Che Xu Studio</p>
