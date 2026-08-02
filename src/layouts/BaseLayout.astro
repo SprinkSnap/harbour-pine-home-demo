@@ -14,6 +14,7 @@ interface Props {
   description: string;
   path?: string;
   ogImage?: string;
+  ogType?: 'website' | 'article' | 'product';
   noindex?: boolean;
   jsonLd?: Record<string, unknown> | Array<Record<string, unknown>>;
 }
@@ -23,6 +24,7 @@ const {
   description,
   path = Astro.url.pathname,
   ogImage = '/images/brand/og.svg',
+  ogType = 'website',
   noindex = false,
   jsonLd = [],
 } = Astro.props;
@@ -42,14 +44,14 @@ const schemas = [websiteJsonLd(siteUrl), ...(Array.isArray(jsonLd) ? jsonLd : js
 <html lang="en-CA">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="generator" content={Astro.generator} />
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
     <meta name="robots" content={robots} />
     <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:locale" content="en_CA" />
     <meta property="og:site_name" content={siteConfig.name} />
     <meta property="og:title" content={pageTitle} />

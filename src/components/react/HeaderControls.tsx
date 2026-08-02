@@ -3,6 +3,46 @@ import { mobileShopLinks, navPrimary, siteConfig } from '../../data/site';
 import { trackEvent } from '../../lib/analytics';
 import { useStore } from './store';
 
+function IconSearch() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <path
+        d="M9 3.5a5.5 5.5 0 1 1 0 11 5.5 5.5 0 0 1 0-11Zm0 1.5a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm6.53 9.47 1.94 1.94-1.06 1.06-1.94-1.94 1.06-1.06Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
+
+function IconHeart() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <path
+        d="M10 17.2 3.8 11.4A4.1 4.1 0 0 1 10 5.3a4.1 4.1 0 0 1 6.2 6.1L10 17.2Z"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function IconCart() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <path
+        d="M3.5 4h1.7l1.1 8.2a1.5 1.5 0 0 0 1.5 1.3h6.4a1.5 1.5 0 0 0 1.5-1.2L17 7H6.2"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <circle cx="8.2" cy="16" r="1.1" fill="currentColor" />
+      <circle cx="14.2" cy="16" r="1.1" fill="currentColor" />
+    </svg>
+  );
+}
+
 export default function HeaderControls() {
   const { totals, wishlistIds, setCartOpen, setEnquiryOpen } = useStore();
   const [menuOpen, setMenuOpen] = useState(false);
@@ -32,22 +72,37 @@ export default function HeaderControls() {
 
   return (
     <>
-      <div className="flex items-center gap-1 sm:gap-2">
-        <a href="/search/" className="btn btn-ghost min-h-11 px-3" aria-label="Search products">
-          Search
+      <div className="flex items-center gap-0.5 sm:gap-1 md:gap-2">
+        <a
+          href="/search/"
+          className="btn btn-ghost min-h-11 min-w-11 px-2 md:px-3"
+          aria-label="Search products"
+        >
+          <IconSearch />
+          <span className="hidden md:inline">Search</span>
         </a>
-        <a href="/wishlist/" className="btn btn-ghost min-h-11 px-3" aria-label={`Wishlist, ${wishlistIds.length} items`}>
-          Wishlist
-          <span className="pill">{wishlistIds.length}</span>
+        <a
+          href="/wishlist/"
+          className="btn btn-ghost relative min-h-11 min-w-11 px-2 md:px-3"
+          aria-label={`Wishlist, ${wishlistIds.length} items`}
+        >
+          <IconHeart />
+          <span className="hidden md:inline">Wishlist</span>
+          <span className="pill absolute -right-0.5 -top-0.5 min-h-5 min-w-5 justify-center px-1 text-[0.7rem] md:static md:ml-1">
+            {wishlistIds.length}
+          </span>
         </a>
         <button
           type="button"
-          className="btn btn-ghost min-h-11 px-3"
+          className="btn btn-ghost relative min-h-11 min-w-11 px-2 md:px-3"
           aria-label={`Demo cart, ${totals.itemCount} items`}
           onClick={() => setCartOpen(true)}
         >
-          Cart
-          <span className="pill">{totals.itemCount}</span>
+          <IconCart />
+          <span className="hidden md:inline">Cart</span>
+          <span className="pill absolute -right-0.5 -top-0.5 min-h-5 min-w-5 justify-center px-1 text-[0.7rem] md:static md:ml-1">
+            {totals.itemCount}
+          </span>
         </button>
         <button
           type="button"
@@ -62,7 +117,7 @@ export default function HeaderControls() {
         <button
           ref={openButtonRef}
           type="button"
-          className="btn btn-secondary min-h-11 lg:hidden"
+          className="btn btn-secondary min-h-11 px-3 lg:hidden"
           aria-expanded={menuOpen}
           aria-controls={menuId}
           onClick={() => setMenuOpen(true)}
@@ -81,7 +136,7 @@ export default function HeaderControls() {
           />
           <nav
             id={menuId}
-            className="absolute inset-y-0 left-0 flex w-[min(100%,22rem)] flex-col bg-porcelain shadow-[var(--shadow-lift)]"
+            className="absolute inset-y-0 left-0 flex w-[min(100%,22rem)] flex-col bg-porcelain pb-[env(safe-area-inset-bottom)] shadow-[var(--shadow-lift)]"
             aria-label="Mobile"
           >
             <div className="flex items-center justify-between border-b border-sand px-4 py-4">

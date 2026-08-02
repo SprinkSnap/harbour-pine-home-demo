@@ -77,7 +77,11 @@ export default function AiAssistant() {
 
   return (
     <>
-      <button type="button" className="btn btn-secondary fixed bottom-4 left-4 z-50 shadow-[var(--shadow-soft)]" onClick={() => setOpen(true)}>
+      <button
+        type="button"
+        className="btn btn-secondary safe-fab-right z-50 shadow-[var(--shadow-soft)]"
+        onClick={() => setOpen(true)}
+      >
         AI assistant
       </button>
       {open ? (

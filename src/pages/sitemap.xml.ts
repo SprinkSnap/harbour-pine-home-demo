@@ -4,16 +4,11 @@ import { journalPosts } from '../data/journal';
 import { products } from '../data/products';
 import { siteConfig } from '../data/site';
 
+/** Indexable content routes only — exclude cart, checkout, wishlist, and search utilities. */
 const staticRoutes = [
   '/',
   '/shop/',
   '/collections/',
-  '/search/',
-  '/wishlist/',
-  '/cart/',
-  '/checkout/',
-  '/checkout/success/',
-  '/checkout/cancelled/',
   '/about/',
   '/journal/',
   '/shipping/',

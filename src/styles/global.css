@@ -34,7 +34,7 @@
   --duration-med: 280ms;
   --duration-slow: 480ms;
 
-  --breakpoint-sm: 390px;
+  --breakpoint-sm: 480px;
   --breakpoint-md: 768px;
   --breakpoint-lg: 1024px;
   --breakpoint-xl: 1440px;
@@ -80,7 +80,8 @@
   }
 
   body.is-nav-open,
-  body.is-drawer-open {
+  body.is-drawer-open,
+  body.is-filters-open {
     overflow: hidden;
   }
 
@@ -320,6 +321,22 @@
 
   .fade-in {
     animation: fade-in var(--duration-med) var(--ease-out) both;
+  }
+
+  .safe-bottom {
+    padding-bottom: calc(0.75rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  .safe-fab-left {
+    position: fixed;
+    left: max(1rem, env(safe-area-inset-left, 0px));
+    bottom: max(1rem, env(safe-area-inset-bottom, 0px));
+  }
+
+  .safe-fab-right {
+    position: fixed;
+    right: max(1rem, env(safe-area-inset-right, 0px));
+    bottom: max(1rem, env(safe-area-inset-bottom, 0px));
   }
 }
 

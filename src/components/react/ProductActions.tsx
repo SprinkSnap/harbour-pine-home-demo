@@ -19,19 +19,22 @@ export default function ProductActions({ product, compact = false }: Props) {
   const [status, setStatus] = useState('');
   const selected = product.variants.find((variant) => variant.id === variantId) ?? defaultVariant;
   const wishlisted = isWishlisted(product.id);
+  const canAdd = Boolean(product.available && selected?.available);
+
+  function handleAdd(qty = quantity) {
+    if (!selected) return;
+    addToCart(product.id, selected.id, qty);
+    setStatus(`${product.name} added to demo cart`);
+  }
 
   if (compact) {
     return (
       <div className="mt-3 flex flex-wrap gap-2">
         <button
           type="button"
-          className="btn btn-primary min-h-10 px-3 text-sm"
-          disabled={!product.available || !selected?.available}
-          onClick={() => {
-            if (!selected) return;
-            addToCart(product.id, selected.id, 1);
-            setStatus(`${product.name} added to demo cart`);
-          }}
+          className="btn btn-primary min-h-10 flex-1 px-3 text-sm sm:flex-none"
+          disabled={!canAdd}
+          onClick={() => handleAdd(1)}
         >
           Add to demo cart
         </button>
@@ -54,7 +57,7 @@ export default function ProductActions({ product, compact = false }: Props) {
   }
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 pb-24 md:pb-0">
       <p className="text-2xl font-semibold text-pine-dark">{formatCad(product.price)} CAD</p>
       <fieldset>
         <legend className="mb-2 text-sm font-semibold text-pine-dark">Variant</legend>
@@ -91,17 +94,8 @@ export default function ProductActions({ product, compact = false }: Props) {
         />
       </div>
 
-      <div className="flex flex-wrap gap-2">
-        <button
-          type="button"
-          className="btn btn-primary"
-          disabled={!product.available || !selected?.available}
-          onClick={() => {
-            if (!selected) return;
-            addToCart(product.id, selected.id, quantity);
-            setStatus(`${product.name} added to demo cart`);
-          }}
-        >
+      <div className="hidden flex-wrap gap-2 md:flex">
+        <button type="button" className="btn btn-primary" disabled={!canAdd} onClick={() => handleAdd()}>
           Add to demo cart
         </button>
         <button
@@ -116,7 +110,29 @@ export default function ProductActions({ product, compact = false }: Props) {
           {wishlisted ? 'Saved to wishlist' : 'Save to wishlist'}
         </button>
       </div>
-      <p className="text-sm text-charcoal/75">Demo cart only — no real order or payment will be created.</p>
+      <p className="hidden text-sm text-charcoal/75 md:block">Demo cart only — no real order or payment will be created.</p>
+
+      <div className="fixed inset-x-0 bottom-0 z-40 border-t border-sand bg-porcelain/95 px-4 py-3 pr-[7.5rem] shadow-[var(--shadow-lift)] backdrop-blur-md md:hidden safe-bottom">
+        <div className="flex items-center gap-2">
+          <button
+            type="button"
+            className="btn btn-secondary min-h-11 min-w-11 px-3"
+            aria-label={wishlisted ? 'Remove from wishlist' : 'Save to wishlist'}
+            aria-pressed={wishlisted}
+            onClick={() => {
+              toggleWishlist(product.id);
+              setStatus(wishlisted ? `${product.name} removed from wishlist` : `${product.name} saved to wishlist`);
+            }}
+          >
+            {wishlisted ? 'Saved' : 'Save'}
+          </button>
+          <button type="button" className="btn btn-primary min-h-11 flex-1" disabled={!canAdd} onClick={() => handleAdd()}>
+            Add · {formatCad(product.price)}
+          </button>
+        </div>
+        <p className="mx-auto mt-2 max-w-lg text-center text-xs text-charcoal/70">Demo cart only — no payment.</p>
+      </div>
+
       <p className="sr-only" role="status" aria-live="polite">
         {status}
       </p>

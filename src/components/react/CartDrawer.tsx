@@ -34,7 +34,7 @@ export default function CartDrawer() {
         onClick={() => setCartOpen(false)}
       />
       <aside
-        className="absolute inset-y-0 right-0 flex w-full max-w-md flex-col bg-porcelain shadow-[var(--shadow-lift)]"
+        className="absolute inset-y-0 right-0 flex w-full max-w-md flex-col bg-porcelain pb-[env(safe-area-inset-bottom)] shadow-[var(--shadow-lift)]"
         role="dialog"
         aria-modal="true"
         aria-labelledby={titleId}
@@ -55,8 +55,10 @@ export default function CartDrawer() {
           {cartLines.length === 0 ? (
             <div className="rounded-[var(--radius-lg)] border border-dashed border-sand p-6">
               <p className="font-medium text-pine-dark">Your demo cart is empty.</p>
-              <p className="mt-2 text-sm text-charcoal/80">Browse the collection and add a few pieces to explore the checkout flow.</p>
-              <a href="/shop/" className="btn btn-primary mt-4" onClick={() => setCartOpen(false)}>
+              <p className="mt-2 text-sm text-charcoal/80">
+                Browse the collection and add a few pieces to explore the checkout flow.
+              </p>
+              <a href="/shop/" className="btn btn-primary mt-4 w-full" onClick={() => setCartOpen(false)}>
                 Shop the collection
               </a>
             </div>
@@ -102,38 +104,41 @@ export default function CartDrawer() {
         </div>
 
         <div className="border-t border-sand px-5 py-4">
-          <dl className="space-y-1 text-sm">
-            <div className="flex justify-between">
-              <dt>Subtotal</dt>
-              <dd>{formatCad(totals.subtotal)}</dd>
-            </div>
-            <div className="flex justify-between">
-              <dt>Sample shipping</dt>
-              <dd>{formatCad(totals.shipping)}</dd>
-            </div>
-            <div className="flex justify-between">
-              <dt>Sample tax</dt>
-              <dd>{formatCad(totals.tax)}</dd>
-            </div>
-            <div className="flex justify-between text-base font-semibold text-pine-dark">
-              <dt>Total</dt>
-              <dd>{formatCad(totals.total)}</dd>
-            </div>
-          </dl>
-          <p className="mt-2 text-xs text-charcoal/70">Sample shipping and tax estimates for demonstration only.</p>
-          <div className="mt-4 grid gap-2">
-            <a href="/cart/" className="btn btn-secondary" onClick={() => setCartOpen(false)}>
-              View cart
+          {cartLines.length > 0 ? (
+            <>
+              <dl className="space-y-1 text-sm">
+                <div className="flex justify-between">
+                  <dt>Subtotal</dt>
+                  <dd>{formatCad(totals.subtotal)}</dd>
+                </div>
+                <div className="flex justify-between">
+                  <dt>Sample shipping</dt>
+                  <dd>{formatCad(totals.shipping)}</dd>
+                </div>
+                <div className="flex justify-between">
+                  <dt>Sample tax</dt>
+                  <dd>{formatCad(totals.tax)}</dd>
+                </div>
+                <div className="flex justify-between text-base font-semibold text-pine-dark">
+                  <dt>Total</dt>
+                  <dd>{formatCad(totals.total)}</dd>
+                </div>
+              </dl>
+              <p className="mt-2 text-xs text-charcoal/70">Sample shipping and tax estimates for demonstration only.</p>
+              <div className="mt-4 grid gap-2">
+                <a href="/cart/" className="btn btn-secondary w-full" onClick={() => setCartOpen(false)}>
+                  View cart
+                </a>
+                <a href="/checkout/" className="btn btn-primary w-full" onClick={() => setCartOpen(false)}>
+                  Continue to demo checkout
+                </a>
+              </div>
+            </>
+          ) : (
+            <a href="/shop/" className="btn btn-secondary w-full" onClick={() => setCartOpen(false)}>
+              Continue shopping
             </a>
-            <a
-              href="/checkout/"
-              className="btn btn-primary"
-              onClick={() => setCartOpen(false)}
-              aria-disabled={cartLines.length === 0}
-            >
-              Continue to demo checkout
-            </a>
-          </div>
+          )}
         </div>
       </aside>
     </div>

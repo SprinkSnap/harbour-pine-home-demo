@@ -1,3 +1,4 @@
+import type { Collection, Product } from '../data/types';
 import { siteConfig } from '../data/site';
 import { getDemoRobots, isDemoMode } from './demo-mode';
 
@@ -6,7 +7,7 @@ export interface PageSeo {
   description: string;
   path: string;
   ogImage?: string;
-  type?: 'website' | 'article';
+  type?: 'website' | 'article' | 'product';
   noindex?: boolean;
 }
 
@@ -56,4 +57,68 @@ export function breadcrumbJsonLd(
       item: absoluteUrl(item.path, siteUrl),
     })),
   };
+}
+
+export function faqJsonLd(faqs: Array<{ question: string; answer: string }>) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer,
+      },
+    })),
+  };
+}
+
+export function productJsonLd(product: Product, siteUrl: string = siteConfig.demoDomain) {
+  const image = product.images.map((item) => absoluteUrl(item.src, siteUrl));
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: product.name,
+    description: product.seoDescription || product.shortDescription,
+    image,
+    sku: product.id,
+    brand: {
+      '@type': 'Brand',
+      name: siteConfig.name,
+    },
+    offers: {
+      '@type': 'Offer',
+      url: absoluteUrl(`/products/${product.slug}/`, siteUrl),
+      priceCurrency: siteConfig.currency,
+      price: product.price.toFixed(2),
+      availability: product.available
+        ? 'https://schema.org/InStock'
+        : 'https://schema.org/OutOfStock',
+      itemCondition: 'https://schema.org/NewCondition',
+    },
+  };
+}
+
+export function collectionJsonLd(
+  collection: Collection,
+  itemCount: number,
+  siteUrl: string = siteConfig.demoDomain,
+) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: collection.name,
+    description: collection.seoDescription || collection.description,
+    url: absoluteUrl(`/collections/${collection.slug}/`, siteUrl),
+    numberOfItems: itemCount,
+  };
+}
+
+export function buildRobotsTxt(demoMode: boolean, siteUrl: string = siteConfig.demoDomain): string {
+  const sitemap = `${siteUrl.replace(/\/$/, '')}/sitemap.xml`;
+  if (demoMode) {
+    return `User-agent: *\nDisallow: /\n\nSitemap: ${sitemap}\n`;
+  }
+  return `User-agent: *\nAllow: /\nDisallow: /cart/\nDisallow: /checkout/\nDisallow: /wishlist/\nDisallow: /search/\nDisallow: /api/\n\nSitemap: ${sitemap}\n`;
 }

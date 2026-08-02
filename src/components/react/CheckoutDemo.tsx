@@ -5,6 +5,50 @@ import { useStore } from './store';
 
 type Step = 'contact' | 'delivery' | 'shipping' | 'review' | 'complete';
 
+const STEPS: Array<{ id: Step; label: string }> = [
+  { id: 'contact', label: 'Contact' },
+  { id: 'delivery', label: 'Delivery' },
+  { id: 'shipping', label: 'Shipping' },
+  { id: 'review', label: 'Review' },
+];
+
+function OrderSummary() {
+  const { cartLines, totals } = useStore();
+  return (
+    <>
+      <ul className="mt-4 space-y-3">
+        {cartLines.map((line) => (
+          <li key={`${line.productId}:${line.variantId}`} className="flex justify-between gap-3 text-sm">
+            <span>
+              {line.name} × {line.quantity}
+              <span className="block text-charcoal/70">{line.variantLabel}</span>
+            </span>
+            <span>{formatCad(line.lineTotal)}</span>
+          </li>
+        ))}
+      </ul>
+      <dl className="mt-4 space-y-1 border-t border-sand pt-4 text-sm">
+        <div className="flex justify-between">
+          <dt>Subtotal</dt>
+          <dd>{formatCad(totals.subtotal)}</dd>
+        </div>
+        <div className="flex justify-between">
+          <dt>Sample shipping</dt>
+          <dd>{formatCad(totals.shipping)}</dd>
+        </div>
+        <div className="flex justify-between">
+          <dt>Sample tax</dt>
+          <dd>{formatCad(totals.tax)}</dd>
+        </div>
+        <div className="flex justify-between text-base font-semibold">
+          <dt>Total</dt>
+          <dd>{formatCad(totals.total)}</dd>
+        </div>
+      </dl>
+    </>
+  );
+}
+
 export default function CheckoutDemo() {
   const { cartLines, totals, clearCart } = useStore();
   const [step, setStep] = useState<Step>('contact');
@@ -31,12 +75,14 @@ export default function CheckoutDemo() {
     }
   }, [step]);
 
+  const stepIndex = STEPS.findIndex((item) => item.id === step);
+
   if (cartLines.length === 0 && step !== 'complete') {
     return (
       <div className="surface rounded-[var(--radius-xl)] p-6">
         <h1 className="font-display text-3xl text-pine-dark">Demo checkout</h1>
         <p className="mt-3 text-charcoal/80">Add products to the demo cart before starting checkout.</p>
-        <a href="/shop/" className="btn btn-primary mt-4">
+        <a href="/shop/" className="btn btn-primary mt-4 w-full sm:w-auto">
           Continue shopping
         </a>
       </div>
@@ -47,19 +93,17 @@ export default function CheckoutDemo() {
     return (
       <div className="surface rounded-[var(--radius-xl)] p-6 md:p-8">
         <p className="eyebrow">Demo complete</p>
-        <h1 className="mt-2 font-display text-4xl text-pine-dark">
+        <h1 className="mt-2 font-display text-3xl text-pine-dark sm:text-4xl">
           You’ve completed the Harbour & Pine checkout demonstration.
         </h1>
-        <p className="mt-4 max-w-2xl text-charcoal/80">
-          Want a shopping experience like this for your business?
-        </p>
-        <div className="mt-6 flex flex-wrap gap-3">
-          <a href="/contact/" className="btn btn-clay">
+        <p className="mt-4 max-w-2xl text-charcoal/80">Want a shopping experience like this for your business?</p>
+        <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+          <a href="/contact/" className="btn btn-clay w-full sm:w-auto">
             Build My Online Store
           </a>
           <a
             href="https://chexustudio.com/work/harbour-pine-home"
-            className="btn btn-secondary"
+            className="btn btn-secondary w-full sm:w-auto"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -67,7 +111,7 @@ export default function CheckoutDemo() {
           </a>
           <button
             type="button"
-            className="btn btn-ghost"
+            className="btn btn-ghost w-full sm:w-auto"
             onClick={() => {
               clearCart();
               setStep('contact');
@@ -81,12 +125,36 @@ export default function CheckoutDemo() {
   }
 
   return (
-    <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
-      <section className="surface rounded-[var(--radius-xl)] p-6">
+    <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr] lg:gap-8">
+      <details className="surface rounded-[var(--radius-xl)] p-4 lg:hidden">
+        <summary className="cursor-pointer list-none font-semibold text-pine-dark">
+          Order summary · {formatCad(totals.total)}
+        </summary>
+        <OrderSummary />
+      </details>
+
+      <section className="surface rounded-[var(--radius-xl)] p-5 sm:p-6">
         <p className="rounded-md bg-sand/70 px-3 py-2 text-sm text-charcoal">
           This is a portfolio demonstration. No order, shipment or payment will be created.
         </p>
-        <h1 className="mt-4 font-display text-3xl text-pine-dark">Checkout demonstration</h1>
+        <h1 className="mt-4 font-display text-2xl text-pine-dark sm:text-3xl">Checkout demonstration</h1>
+        <ol className="mt-4 flex flex-wrap gap-2" aria-label="Checkout steps">
+          {STEPS.map((item, index) => {
+            const current = item.id === step;
+            const done = stepIndex > index;
+            return (
+              <li
+                key={item.id}
+                className={`rounded-md px-2.5 py-1 text-xs font-semibold ${
+                  current ? 'bg-pine text-porcelain' : done ? 'bg-sage/40 text-pine-dark' : 'bg-linen text-charcoal/70'
+                }`}
+                aria-current={current ? 'step' : undefined}
+              >
+                {index + 1}. {item.label}
+              </li>
+            );
+          })}
+        </ol>
         <p className="mt-2 text-sm text-charcoal/75">Step: {stepLabel}</p>
 
         {step === 'contact' ? (
@@ -108,7 +176,7 @@ export default function CheckoutDemo() {
             <p className="text-sm text-charcoal/75">
               Do not enter real personal information. Values stay in your browser and are never transmitted.
             </p>
-            <button type="submit" className="btn btn-primary">
+            <button type="submit" className="btn btn-primary w-full sm:w-auto">
               Continue
             </button>
           </form>
@@ -144,11 +212,11 @@ export default function CheckoutDemo() {
               </label>
             </fieldset>
             <p className="text-sm text-charcoal/75">Sample shipping options for demonstration only.</p>
-            <div className="flex gap-2">
-              <button type="button" className="btn btn-secondary" onClick={() => setStep('contact')}>
+            <div className="flex flex-col gap-2 sm:flex-row">
+              <button type="button" className="btn btn-secondary w-full sm:w-auto" onClick={() => setStep('contact')}>
                 Back
               </button>
-              <button type="submit" className="btn btn-primary">
+              <button type="submit" className="btn btn-primary w-full sm:w-auto">
                 Continue
               </button>
             </div>
@@ -175,14 +243,12 @@ export default function CheckoutDemo() {
               <label htmlFor="demo-postal">Postal code (sample)</label>
               <input id="demo-postal" defaultValue="M5V 0A0" />
             </div>
-            <p className="text-sm text-charcoal/75">
-              Sample shipping details are not stored or sent anywhere.
-            </p>
-            <div className="flex gap-2">
-              <button type="button" className="btn btn-secondary" onClick={() => setStep('delivery')}>
+            <p className="text-sm text-charcoal/75">Sample shipping details are not stored or sent anywhere.</p>
+            <div className="flex flex-col gap-2 sm:flex-row">
+              <button type="button" className="btn btn-secondary w-full sm:w-auto" onClick={() => setStep('delivery')}>
                 Back
               </button>
-              <button type="submit" className="btn btn-primary">
+              <button type="submit" className="btn btn-primary w-full sm:w-auto">
                 Continue
               </button>
             </div>
@@ -193,19 +259,21 @@ export default function CheckoutDemo() {
           <div className="mt-6 space-y-4">
             <h2 className="font-display text-2xl text-pine-dark">Review demo order</h2>
             <ul className="space-y-2 text-sm">
-              <li>Contact: {demoName} · {demoEmail}</li>
+              <li>
+                Contact: {demoName} · {demoEmail}
+              </li>
               <li>Delivery method: {method}</li>
             </ul>
             <p className="rounded-md bg-linen px-3 py-2 text-sm">
               Completing this step finishes the demonstration only. No payment is collected.
             </p>
-            <div className="flex gap-2">
-              <button type="button" className="btn btn-secondary" onClick={() => setStep('shipping')}>
+            <div className="flex flex-col gap-2 sm:flex-row">
+              <button type="button" className="btn btn-secondary w-full sm:w-auto" onClick={() => setStep('shipping')}>
                 Back
               </button>
               <button
                 type="button"
-                className="btn btn-primary"
+                className="btn btn-primary w-full sm:w-auto"
                 onClick={() => {
                   trackEvent('demo_checkout_completed', { itemCount: totals.itemCount });
                   clearCart();
@@ -219,37 +287,9 @@ export default function CheckoutDemo() {
         ) : null}
       </section>
 
-      <aside className="surface h-fit rounded-[var(--radius-xl)] p-6">
+      <aside className="surface hidden h-fit rounded-[var(--radius-xl)] p-6 lg:block">
         <h2 className="font-display text-2xl text-pine-dark">Order summary</h2>
-        <ul className="mt-4 space-y-3">
-          {cartLines.map((line) => (
-            <li key={`${line.productId}:${line.variantId}`} className="flex justify-between gap-3 text-sm">
-              <span>
-                {line.name} × {line.quantity}
-                <span className="block text-charcoal/70">{line.variantLabel}</span>
-              </span>
-              <span>{formatCad(line.lineTotal)}</span>
-            </li>
-          ))}
-        </ul>
-        <dl className="mt-4 space-y-1 border-t border-sand pt-4 text-sm">
-          <div className="flex justify-between">
-            <dt>Subtotal</dt>
-            <dd>{formatCad(totals.subtotal)}</dd>
-          </div>
-          <div className="flex justify-between">
-            <dt>Sample shipping</dt>
-            <dd>{formatCad(totals.shipping)}</dd>
-          </div>
-          <div className="flex justify-between">
-            <dt>Sample tax</dt>
-            <dd>{formatCad(totals.tax)}</dd>
-          </div>
-          <div className="flex justify-between text-base font-semibold">
-            <dt>Total</dt>
-            <dd>{formatCad(totals.total)}</dd>
-          </div>
-        </dl>
+        <OrderSummary />
       </aside>
     </div>
   );

@@ -7,7 +7,9 @@ import ProductCard from '../../components/ProductCard.astro';
 import ShopFilters from '../../components/react/ShopFilters';
 import { getCollection } from '../../data/collections';
 import { products } from '../../data/products';
-import { breadcrumbJsonLd } from '../../lib/seo';
+import { isDemoMode } from '../../lib/demo-mode';
+import { breadcrumbJsonLd, collectionJsonLd } from '../../lib/seo';
+import { siteConfig } from '../../data/site';
 import { filterProducts, parseFilterParams } from '../../lib/product-filters';
 
 const { slug } = Astro.params;
@@ -20,17 +22,23 @@ const state = parseFilterParams(Astro.url.searchParams);
 state.collection = collection.slug;
 const collectionProducts = products.filter((product) => product.collection === collection.slug);
 const result = filterProducts(products, state);
+const demoMode = isDemoMode(import.meta.env.DEMO_MODE ?? 'true');
+const siteUrl = import.meta.env.PUBLIC_SITE_URL ?? siteConfig.demoDomain;
+const schemas = [
+  breadcrumbJsonLd([
+    { name: 'Home', path: '/' },
+    { name: 'Collections', path: '/collections/' },
+    { name: collection.name, path: `/collections/${collection.slug}/` },
+  ]),
+  ...(!demoMode ? [collectionJsonLd(collection, result.total, siteUrl)] : []),
+];
 ---
 
 <BaseLayout
   title={collection.seoTitle}
   description={collection.seoDescription}
   path={`/collections/${collection.slug}/`}
-  jsonLd={breadcrumbJsonLd([
-    { name: 'Home', path: '/' },
-    { name: 'Collections', path: '/collections/' },
-    { name: collection.name, path: `/collections/${collection.slug}/` },
-  ])}
+  jsonLd={schemas}
 >
   <section class="section-space pt-8">
     <div class="container-page">
