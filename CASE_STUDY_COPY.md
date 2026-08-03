@@ -114,7 +114,10 @@ Do not invent performance or conversion results.
 
 ## Desktop and mobile screenshots
 
-Verified mobile captures (390×844) live in `docs/case-study/mobile/`. Regenerate with `npm run screenshots:mobile` against a running local server.
+Verified captures live under `docs/case-study/`:
+
+- Mobile (390×844): `docs/case-study/mobile/` — `npm run screenshots:mobile`
+- Desktop (1440×900): `docs/case-study/desktop/` — `npm run screenshots:desktop`
 
 Recommended mobile set:
 
@@ -126,9 +129,19 @@ Recommended mobile set:
 | `06-cart-drawer.png` | Cart drawer |
 | `07-checkout-complete.png` | Checkout completion + Che Xu Studio CTA |
 
-Supporting frames: `02-mobile-navigation.png`, `08-search-results.png`.
+Supporting mobile frames: `02-mobile-navigation.png`, `08-search-results.png`.
 
-Desktop (1440) captures can be added with the same flow after deploy.
+Recommended desktop set:
+
+| File | Capture |
+| --- | --- |
+| `01-homepage-hero.png` | Homepage hero at 1440 |
+| `03-collection-filters.png` | Collection filters sidebar + product grid |
+| `04-product-variants.png` | Product page variants (two-column) |
+| `05-cart-drawer.png` | Cart drawer |
+| `06-checkout-complete.png` | Checkout completion + Che Xu Studio CTA |
+
+Supporting desktop frames: `02-shop-browse.png`, `07-search-results.png`.
 
 ## Primary CTA
 
