@@ -114,15 +114,21 @@ Do not invent performance or conversion results.
 
 ## Desktop and mobile screenshots
 
-Add verified screenshots after staging/production deploy.
+Verified mobile captures (390×844) live in `docs/case-study/mobile/`. Regenerate with `npm run screenshots:mobile` against a running local server.
 
-Suggested captures:
+Recommended mobile set:
 
-- Homepage hero at 1440 and 390
-- Collection filters
-- Product page variants
-- Cart drawer
-- Checkout completion + Che Xu Studio CTA
+| File | Capture |
+| --- | --- |
+| `01-homepage-hero.png` | Homepage hero at 390 |
+| `03-collection-browse.png` / `04-collection-filters.png` | Collection browse + filters sheet |
+| `05-product-variants.png` | Product page variants |
+| `06-cart-drawer.png` | Cart drawer |
+| `07-checkout-complete.png` | Checkout completion + Che Xu Studio CTA |
+
+Supporting frames: `02-mobile-navigation.png`, `08-search-results.png`.
+
+Desktop (1440) captures can be added with the same flow after deploy.
 
 ## Primary CTA
 

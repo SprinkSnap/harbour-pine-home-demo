@@ -1,0 +1,58 @@
+{
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "deviceScaleFactor": 2,
+  "baseUrl": "http://127.0.0.1:4321",
+  "shots": [
+    {
+      "id": "01-homepage-hero",
+      "title": "Homepage hero",
+      "why": "Brand-first first viewport with Harbour & Pine identity, headline, CTA group, and full-bleed hero imagery.",
+      "path": "docs/case-study/mobile/01-homepage-hero.png"
+    },
+    {
+      "id": "02-mobile-navigation",
+      "title": "Mobile navigation",
+      "why": "Full-height accessible menu with shop links and clear close affordance.",
+      "path": "docs/case-study/mobile/02-mobile-navigation.png"
+    },
+    {
+      "id": "03-collection-browse",
+      "title": "Collection browse",
+      "why": "Living collection with product cards, filters entry point, and calm mobile spacing.",
+      "path": "docs/case-study/mobile/03-collection-browse.png"
+    },
+    {
+      "id": "04-collection-filters",
+      "title": "Collection filters",
+      "why": "Bottom-sheet filter & sort controls for search, category, colour, price, availability, and sort.",
+      "path": "docs/case-study/mobile/04-collection-filters.png"
+    },
+    {
+      "id": "05-product-variants",
+      "title": "Product page variants",
+      "why": "Product detail with image, price, colour variants, materials cues, and sticky add-to-demo-cart CTA.",
+      "path": "docs/case-study/mobile/05-product-variants.png"
+    },
+    {
+      "id": "06-cart-drawer",
+      "title": "Demo cart drawer",
+      "why": "Persistent demo cart with line items, totals, and continue-to-checkout path — clearly marked as demo-only.",
+      "path": "docs/case-study/mobile/06-cart-drawer.png"
+    },
+    {
+      "id": "07-checkout-complete",
+      "title": "Checkout completion + studio CTA",
+      "why": "Demo checkout complete state with Che Xu Studio primary CTA — the conversion handoff from fiction to real enquiry.",
+      "path": "docs/case-study/mobile/07-checkout-complete.png"
+    },
+    {
+      "id": "08-search-results",
+      "title": "Search results",
+      "why": "Shareable search URL with result summary and product discovery on a small screen.",
+      "path": "docs/case-study/mobile/08-search-results.png"
+    }
+  ]
+}
