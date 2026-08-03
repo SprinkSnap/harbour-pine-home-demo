@@ -22,6 +22,7 @@
     "test:e2e": "playwright test",
     "test:a11y": "playwright test tests/e2e/a11y.spec.ts",
     "screenshots:mobile": "node scripts/capture-mobile-screenshots.mjs",
+    "screenshots:desktop": "node scripts/capture-desktop-screenshots.mjs",
     "deploy": "npm run build && npx wrangler deploy && npm run db:remote",
     "deploy:staging": "npm run build && npx wrangler deploy --env staging && npx wrangler d1 migrations apply DB --remote --env staging",
     "cf:dry-run": "npm run build && npx wrangler deploy --dry-run",
