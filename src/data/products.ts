@@ -14,13 +14,13 @@ export const products: Product[] = [
     images: [
       {
         src: '/images/products/cedar-cove-throw.svg',
-        alt: 'Folded pine-green throw draped over a warm sand background',
+        alt: 'Deep Pine Cedar Cove Throw draped over a reading chair, with folded Muted Sage and Warm Sand variants nearby',
         width: 1200,
         height: 1200,
         crop: 'square',
       },
     ],
-    imageAlt: 'Cedar Cove Throw in deep pine',
+    imageAlt: 'Cedar Cove Throw in Deep Pine with Muted Sage and Warm Sand colour variants',
     variants: [
       { id: 'pine', label: 'Deep Pine', colour: 'pine', available: true },
       { id: 'sage', label: 'Muted Sage', colour: 'sage', available: true },
