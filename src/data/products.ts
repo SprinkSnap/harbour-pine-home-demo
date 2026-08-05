@@ -13,7 +13,7 @@ export const products: Product[] = [
     categories: ['throws', 'soft-accents'],
     images: [
       {
-        src: '/images/products/cedar-cove-throw.svg',
+        src: '/images/products/cedar-cove-throw.jpg',
         alt: 'Deep Pine Cedar Cove Throw draped over a reading chair, with folded Muted Sage and Warm Sand variants nearby',
         width: 1200,
         height: 1200,
