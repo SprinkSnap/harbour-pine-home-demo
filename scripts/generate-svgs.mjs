@@ -36,7 +36,7 @@ function frame(inner, label) {
 }
 
 // Curated lifestyle product art kept outside the abstract generator:
-// public/images/products/cedar-cove-throw.svg
+// public/images/products/cedar-cove-throw.jpg
 const products = {
   'harbour-linen-cushion': frame(
     `<rect x="300" y="300" width="600" height="600" rx="48" fill="${colours.harbour}"/>
