@@ -1,0 +1,52 @@
+{
+  "viewport": {
+    "width": 1440,
+    "height": 900
+  },
+  "deviceScaleFactor": 2,
+  "baseUrl": "http://127.0.0.1:4321",
+  "shots": [
+    {
+      "id": "01-homepage-hero",
+      "title": "Homepage hero",
+      "why": "Brand-first first viewport with Harbour & Pine identity, headline, CTA group, and full-bleed hero imagery at desktop width.",
+      "path": "docs/case-study/desktop/01-homepage-hero.png"
+    },
+    {
+      "id": "02-shop-browse",
+      "title": "Shop browse",
+      "why": "Desktop catalogue with sidebar filters and multi-column product discovery.",
+      "path": "docs/case-study/desktop/02-shop-browse.png"
+    },
+    {
+      "id": "03-collection-filters",
+      "title": "Collection filters",
+      "why": "Living collection with persistent desktop filter sidebar, result count, and product grid.",
+      "path": "docs/case-study/desktop/03-collection-filters.png"
+    },
+    {
+      "id": "04-product-variants",
+      "title": "Product page variants",
+      "why": "Two-column product detail with gallery, price, colour variants, and add-to-demo-cart CTA.",
+      "path": "docs/case-study/desktop/04-product-variants.png"
+    },
+    {
+      "id": "05-cart-drawer",
+      "title": "Demo cart drawer",
+      "why": "Right-side demo cart with line items, totals, and continue-to-checkout — clearly marked as demo-only.",
+      "path": "docs/case-study/desktop/05-cart-drawer.png"
+    },
+    {
+      "id": "06-checkout-complete",
+      "title": "Checkout completion + studio CTA",
+      "why": "Demo checkout complete state with Che Xu Studio primary CTA — the conversion handoff from fiction to real enquiry.",
+      "path": "docs/case-study/desktop/06-checkout-complete.png"
+    },
+    {
+      "id": "07-search-results",
+      "title": "Search results",
+      "why": "Shareable search URL with sidebar filters and multi-column product results.",
+      "path": "docs/case-study/desktop/07-search-results.png"
+    }
+  ]
+}
