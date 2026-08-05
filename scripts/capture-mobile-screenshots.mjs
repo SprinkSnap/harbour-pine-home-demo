@@ -211,7 +211,7 @@ async function main() {
   }
   await page.getByRole('button', { name: /Complete demo checkout/i }).click();
   const completeHeading = page.getByRole('heading', {
-    name: /You’ve completed the Harbour & Pine checkout demonstration/i,
+    name: /You’ve completed the Harbour & Pine Home checkout demonstration/i,
   });
   await completeHeading.waitFor({ state: 'visible' });
   await prepareFrame(page);

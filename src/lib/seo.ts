@@ -66,7 +66,7 @@ export function organizationJsonLd(siteUrl: string = siteConfig.demoDomain) {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: siteConfig.name,
-    alternateName: [siteConfig.shortName, 'Harbour and Pine Home'],
+    alternateName: ['Harbour & Pine', 'Harbour and Pine Home'],
     url: siteUrl,
     logo: {
       '@type': 'ImageObject',
