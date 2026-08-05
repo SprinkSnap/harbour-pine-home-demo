@@ -35,13 +35,9 @@ function frame(inner, label) {
 </svg>`;
 }
 
+// Curated lifestyle product art kept outside the abstract generator:
+// public/images/products/cedar-cove-throw.svg
 const products = {
-  'cedar-cove-throw': frame(
-    `<rect x="260" y="280" width="680" height="560" rx="36" fill="${colours.pine}"/>
-     <path d="M280 360 C420 300,780 300,920 360 L900 780 C760 840,420 840,280 780 Z" fill="${colours.pineDark}" opacity="0.35"/>
-     <rect x="320" y="340" width="560" height="40" rx="20" fill="${colours.sand}" opacity="0.35"/>`,
-    'Cedar Cove Throw',
-  ),
   'harbour-linen-cushion': frame(
     `<rect x="300" y="300" width="600" height="600" rx="48" fill="${colours.harbour}"/>
      <rect x="340" y="340" width="520" height="520" rx="36" fill="none" stroke="${colours.sand}" stroke-width="10" opacity="0.45"/>`,

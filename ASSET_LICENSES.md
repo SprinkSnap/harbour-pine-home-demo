@@ -1,6 +1,6 @@
 # Asset Licenses
 
-All storefront imagery in this repository is original, purpose-built SVG/CSS visual work created for the Harbour & Pine Home portfolio demonstration.
+All storefront imagery in this repository is original visual work created for the Harbour & Pine Home portfolio demonstration.
 
 ## Covered assets
 
@@ -9,7 +9,7 @@ All storefront imagery in this repository is original, purpose-built SVG/CSS vis
 - `public/images/brand/og.svg`
 - `public/images/collections/*.svg`
 - `public/images/rooms/*.svg`
-- `public/images/products/*.svg`
+- `public/images/products/*.svg` (abstract SVG catalogue art, plus curated lifestyle product frames such as `cedar-cove-throw.svg`)
 
 ## License
 
@@ -24,11 +24,13 @@ These assets may not be scraped, resold or presented as photography of real merc
 
 ## Generation
 
-SVG catalogue art can be regenerated with:
+Abstract SVG catalogue art can be regenerated with:
 
 ```bash
 node scripts/generate-svgs.mjs
 ```
+
+`public/images/products/cedar-cove-throw.svg` is a curated square lifestyle frame and is intentionally excluded from that generator.
 
 ## Fonts
 
