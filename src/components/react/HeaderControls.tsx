@@ -101,7 +101,7 @@ export default function HeaderControls() {
               aria-label="Mobile"
             >
               <div className="flex items-center justify-between border-b border-sand px-4 py-4">
-                <p className="font-display text-xl text-pine-dark">{siteConfig.shortName}</p>
+                <p className="font-display text-xl text-pine-dark">{siteConfig.name}</p>
                 <button
                   ref={closeButtonRef}
                   type="button"

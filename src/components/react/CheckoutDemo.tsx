@@ -94,7 +94,7 @@ export default function CheckoutDemo() {
       <div className="surface rounded-[var(--radius-xl)] p-6 md:p-8">
         <p className="eyebrow">Demo complete</p>
         <h1 className="mt-2 font-display text-3xl text-pine-dark sm:text-4xl">
-          You’ve completed the Harbour & Pine checkout demonstration.
+          You’ve completed the Harbour & Pine Home checkout demonstration.
         </h1>
         <p className="mt-4 max-w-2xl text-charcoal/80">Want a shopping experience like this for your business?</p>
         <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">

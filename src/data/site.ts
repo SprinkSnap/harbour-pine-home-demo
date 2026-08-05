@@ -1,6 +1,6 @@
 export const siteConfig = {
   name: 'Harbour & Pine Home',
-  shortName: 'Harbour & Pine',
+  shortName: 'Harbour & Pine Home',
   tagline: 'Thoughtful pieces for everyday living.',
   locale: 'en-CA',
   currency: 'CAD',

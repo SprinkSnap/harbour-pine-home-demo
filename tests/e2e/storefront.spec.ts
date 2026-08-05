@@ -34,7 +34,7 @@ test.describe('Harbour & Pine storefront', () => {
     await page.getByRole('button', { name: 'Continue' }).click();
     await page.getByRole('button', { name: 'Continue' }).click();
     await page.getByRole('button', { name: /Complete demo checkout/i }).click();
-    await expect(page.getByText(/You’ve completed the Harbour & Pine checkout demonstration/i)).toBeVisible();
+    await expect(page.getByText(/You’ve completed the Harbour & Pine Home checkout demonstration/i)).toBeVisible();
   });
 
   test('mobile menu opens full-height with shop links', async ({ page }) => {

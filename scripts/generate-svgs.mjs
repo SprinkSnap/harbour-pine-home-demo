@@ -128,7 +128,7 @@ const hero = `<?xml version="1.0" encoding="UTF-8"?>
   <ellipse cx="520" cy="520" rx="180" ry="70" fill="${colours.sand}"/>
   <path d="M1080 420 C1120 360,1180 320,1200 280 C1220 320,1260 360,1280 430" stroke="${colours.porcelain}" stroke-width="14" fill="none" stroke-linecap="round"/>
   <rect x="260" y="700" width="240" height="28" rx="14" fill="${colours.sand}" opacity="0.45"/>
-  <text x="200" y="180" font-family="Georgia, serif" font-size="64" fill="${colours.pineDark}" opacity="0.55">Harbour &amp; Pine</text>
+  <text x="200" y="180" font-family="Georgia, serif" font-size="56" fill="${colours.pineDark}" opacity="0.55">Harbour &amp; Pine Home</text>
 </svg>`;
 
 const og = `<?xml version="1.0" encoding="UTF-8"?>
