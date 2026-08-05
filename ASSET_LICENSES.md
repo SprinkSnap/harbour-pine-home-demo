@@ -9,9 +9,8 @@ All storefront imagery in this repository is original visual work created for th
 - `public/images/brand/og.svg`
 - `public/images/collections/*.svg`
 - `public/images/rooms/*.svg`
-- `public/images/products/*.svg` (abstract SVG catalogue art)
-- `public/images/products/cedar-cove-throw.jpg` (curated lifestyle product photograph)
-- `public/images/products/clearpath-desk-tray.jpg` (curated lifestyle product photograph)
+- `public/images/products/*.svg` (utility/placeholder SVG art only)
+- `public/images/products/*.jpg` (curated lifestyle product photographs for the full catalogue)
 
 ## License
 
@@ -32,7 +31,7 @@ Abstract SVG catalogue art can be regenerated with:
 node scripts/generate-svgs.mjs
 ```
 
-`public/images/products/cedar-cove-throw.jpg` and `public/images/products/clearpath-desk-tray.jpg` are curated square lifestyle photographs and are intentionally excluded from that generator.
+All catalogue product photographs (`public/images/products/*.jpg`) are curated square lifestyle frames and are intentionally excluded from that generator. Only `placeholder.svg` remains in the SVG product generator.
 
 ## Fonts
 
