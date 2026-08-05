@@ -14,7 +14,7 @@ export const products: Product[] = [
     images: [
       {
         src: '/images/products/cedar-cove-throw.jpg',
-        alt: 'Deep Pine Cedar Cove Throw draped over a reading chair, with folded Muted Sage and Warm Sand variants nearby',
+        alt: 'Deep Pine Cedar Cove Throw draped over a reading chair by a lakeside window, with folded Muted Sage and Warm Sand variants nearby',
         width: 1200,
         height: 1200,
         crop: 'square',
