@@ -52,8 +52,8 @@ export const products: Product[] = [
     categories: ['cushions', 'soft-accents'],
     images: [
       {
-        src: '/images/products/harbour-linen-cushion.svg',
-        alt: 'Square linen cushion in harbour blue on a soft linen surface',
+        src: '/images/products/harbour-linen-cushion.jpg',
+        alt: 'Square linen cushion in harbour blue on a soft neutral chair.',
         width: 1200,
         height: 1200,
         crop: 'square',
@@ -91,8 +91,8 @@ export const products: Product[] = [
     categories: ['trays', 'table-accents'],
     images: [
       {
-        src: '/images/products/softwood-serving-tray.svg',
-        alt: 'Light wood serving tray with rounded corners on a porcelain surface',
+        src: '/images/products/softwood-serving-tray.jpg',
+        alt: 'Light wood serving tray with rounded corners, a ceramic mug and a linen-bound book on a porcelain surface.',
         width: 1200,
         height: 1200,
         crop: 'square',
@@ -129,8 +129,8 @@ export const products: Product[] = [
     categories: ['vases', 'decorative-objects'],
     images: [
       {
-        src: '/images/products/riverstone-ceramic-vase.svg',
-        alt: 'Matte ceramic vase in sage with a single stem silhouette',
+        src: '/images/products/riverstone-ceramic-vase.jpg',
+        alt: 'Matte ceramic vase in muted sage with a single leafy stem silhouette.',
         width: 1200,
         height: 1200,
         crop: 'square',
@@ -168,8 +168,8 @@ export const products: Product[] = [
     categories: ['mugs', 'tableware'],
     images: [
       {
-        src: '/images/products/daybreak-mug-set.svg',
-        alt: 'Two ceramic mugs in porcelain and harbour blue',
+        src: '/images/products/daybreak-mug-set.jpg',
+        alt: 'Two ceramic mugs in porcelain and harbour blue on a warm oak table.',
         width: 1200,
         height: 1200,
         crop: 'square',
@@ -207,8 +207,8 @@ export const products: Product[] = [
     categories: ['boards', 'serving'],
     images: [
       {
-        src: '/images/products/grove-serving-board.svg',
-        alt: 'Warm wood serving board with a gentle curved edge',
+        src: '/images/products/grove-serving-board.jpg',
+        alt: 'Warm light-oak serving board with a gentle curved edge, cheese, fruit and crackers.',
         width: 1200,
         height: 1200,
         crop: 'square',
@@ -245,8 +245,8 @@ export const products: Product[] = [
     categories: ['table-linens', 'textiles'],
     images: [
       {
-        src: '/images/products/tide-linen-napkins.svg',
-        alt: 'Stack of folded linen napkins in sand and harbour tones',
+        src: '/images/products/tide-linen-napkins.jpg',
+        alt: 'Four folded linen napkins in warm sand, harbour blue and muted sage.',
         width: 1200,
         height: 1200,
         crop: 'square',
@@ -284,8 +284,8 @@ export const products: Product[] = [
     categories: ['table-linens', 'runners'],
     images: [
       {
-        src: '/images/products/canal-table-runner.svg',
-        alt: 'Narrow table runner in harbour blue across a light table surface',
+        src: '/images/products/canal-table-runner.jpg',
+        alt: 'Narrow harbour-blue table runner across a light oak dining table.',
         width: 1200,
         height: 1200,
         crop: 'square',
@@ -322,8 +322,8 @@ export const products: Product[] = [
     categories: ['baskets', 'organizers'],
     images: [
       {
-        src: '/images/products/nest-woven-basket.svg',
-        alt: 'Tall woven storage basket in natural sand tones',
+        src: '/images/products/nest-woven-basket.jpg',
+        alt: 'Tall woven storage basket in natural sand tones holding a folded throw and entryway essentials.',
         width: 1200,
         height: 1200,
         crop: 'square',
@@ -360,8 +360,8 @@ export const products: Product[] = [
     categories: ['hooks', 'wall-storage'],
     images: [
       {
-        src: '/images/products/ridge-wall-hooks.svg',
-        alt: 'Three charcoal wall hooks mounted on a pine-toned panel',
+        src: '/images/products/ridge-wall-hooks.jpg',
+        alt: 'Three charcoal wall hooks mounted on a pine-toned panel with a linen cloth and canvas bag.',
         width: 1200,
         height: 1200,
         crop: 'square',
@@ -438,8 +438,8 @@ export const products: Product[] = [
     categories: ['planters', 'decorative-objects'],
     images: [
       {
-        src: '/images/products/windowledge-planter.svg',
-        alt: 'Compact ceramic planter with a soft green plant silhouette',
+        src: '/images/products/windowledge-planter.jpg',
+        alt: 'Compact muted-sage ceramic planter and saucer with a leafy herb near a harbour window.',
         width: 1200,
         height: 1200,
         crop: 'square',
@@ -477,8 +477,8 @@ export const products: Product[] = [
     categories: ['desk-organizers'],
     images: [
       {
-        src: '/images/products/folio-document-stand.svg',
-        alt: 'Slanted document stand in charcoal with an open notebook',
+        src: '/images/products/folio-document-stand.jpg',
+        alt: 'Slanted charcoal document stand holding an open blank notebook upright.',
         width: 1200,
         height: 1200,
         crop: 'square',
@@ -515,8 +515,8 @@ export const products: Product[] = [
     categories: ['decorative-objects', 'trays'],
     images: [
       {
-        src: '/images/products/ember-candle-dish.svg',
-        alt: 'Low clay ceramic dish with a simple candle form',
+        src: '/images/products/ember-candle-dish.jpg',
+        alt: 'Low clay ceramic dish with a simple ivory pillar candle.',
         width: 1200,
         height: 1200,
         crop: 'square',
@@ -554,8 +554,8 @@ export const products: Product[] = [
     categories: ['organizers', 'decorative-objects'],
     images: [
       {
-        src: '/images/products/northline-key-bowl.svg',
-        alt: 'Compact harbour-blue bowl for keys and coins',
+        src: '/images/products/northline-key-bowl.jpg',
+        alt: 'Compact harbour-blue ceramic bowl holding keys and coins.',
         width: 1200,
         height: 1200,
         crop: 'square',
@@ -592,8 +592,8 @@ export const products: Product[] = [
     categories: ['bins', 'organizers'],
     images: [
       {
-        src: '/images/products/shelter-storage-bin.svg',
-        alt: 'Fabric storage bin in soft linen with loop handles',
+        src: '/images/products/shelter-storage-bin.jpg',
+        alt: 'Structured soft-linen storage bin with loop handles and neatly folded textiles.',
         width: 1200,
         height: 1200,
         crop: 'square',
@@ -631,8 +631,8 @@ export const products: Product[] = [
     categories: ['table-linens'],
     images: [
       {
-        src: '/images/products/pinegrove-placemat-set.svg',
-        alt: 'Stack of rectangular placemats in deep pine and sand',
+        src: '/images/products/pinegrove-placemat-set.jpg',
+        alt: 'Four rectangular woven placemats in deep pine and warm sand with a porcelain plate.',
         width: 1200,
         height: 1200,
         crop: 'square',
@@ -669,8 +669,8 @@ export const products: Product[] = [
     categories: ['cushions', 'soft-accents'],
     images: [
       {
-        src: '/images/products/stillwater-throw-pillow.svg',
-        alt: 'Long lumbar pillow in soft linen against a pine backdrop',
+        src: '/images/products/stillwater-throw-pillow.jpg',
+        alt: 'Long lumbar pillow in soft linen on a pine-toned reading chair.',
         width: 1200,
         height: 1200,
         crop: 'square',
@@ -708,8 +708,8 @@ export const products: Product[] = [
     categories: ['desk-organizers'],
     images: [
       {
-        src: '/images/products/ledger-pencil-cup.svg',
-        alt: 'Matte charcoal pencil cup holding pens and scissors',
+        src: '/images/products/ledger-pencil-cup.jpg',
+        alt: 'Matte charcoal pencil cup holding neutral pens, pencils and scissors.',
         width: 1200,
         height: 1200,
         crop: 'square',
@@ -747,8 +747,8 @@ export const products: Product[] = [
     categories: ['decorative-objects'],
     images: [
       {
-        src: '/images/products/drift-decorative-object.svg',
-        alt: 'Small curved sculptural object in porcelain on a sand surface',
+        src: '/images/products/drift-decorative-object.jpg',
+        alt: 'Small curved sculptural object in matte porcelain on a warm sand surface.',
         width: 1200,
         height: 1200,
         crop: 'square',
@@ -786,8 +786,8 @@ export const products: Product[] = [
     categories: ['tableware', 'table-accents'],
     images: [
       {
-        src: '/images/products/hearth-coaster-set.svg',
-        alt: 'Four round coasters in sand and pine stacked neatly',
+        src: '/images/products/hearth-coaster-set.jpg',
+        alt: 'Four round cork coasters in warm sand and deep pine arranged with a porcelain mug.',
         width: 1200,
         height: 1200,
         crop: 'square',
@@ -824,8 +824,8 @@ export const products: Product[] = [
     categories: ['kitchen-textiles'],
     images: [
       {
-        src: '/images/products/meadow-tea-towel.svg',
-        alt: 'Folded tea towel in muted sage with a hanging loop',
+        src: '/images/products/meadow-tea-towel.jpg',
+        alt: 'Folded and draped muted-sage tea towel with a hanging loop.',
         width: 1200,
         height: 1200,
         crop: 'square',
