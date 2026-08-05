@@ -37,6 +37,7 @@ function frame(inner, label) {
 
 // Curated lifestyle product art kept outside the abstract generator:
 // public/images/products/cedar-cove-throw.jpg
+// public/images/products/clearpath-desk-tray.jpg
 const products = {
   'harbour-linen-cushion': frame(
     `<rect x="300" y="300" width="600" height="600" rx="48" fill="${colours.harbour}"/>
@@ -100,15 +101,6 @@ const products = {
      <circle cx="780" cy="540" r="34" fill="${colours.charcoal}"/>
      <path d="M420 574 v70 M600 574 v70 M780 574 v70" stroke="${colours.charcoal}" stroke-width="16" stroke-linecap="round"/>`,
     'Ridge Wall Hooks',
-  ),
-  'clearpath-desk-tray': frame(
-    `<rect x="250" y="420" width="700" height="320" rx="28" fill="${colours.pine}"/>
-     <rect x="280" y="450" width="640" height="260" rx="18" fill="${colours.pineDark}"/>
-     <rect x="320" y="500" width="180" height="16" rx="8" fill="${colours.sand}"/>
-     <rect x="320" y="540" width="240" height="16" rx="8" fill="${colours.sand}" opacity="0.7"/>
-     <rect x="700" y="500" width="20" height="140" rx="10" fill="${colours.clay}"/>
-     <rect x="740" y="520" width="20" height="120" rx="10" fill="${colours.harbour}"/>`,
-    'Clearpath Desk Tray',
   ),
   'windowledge-planter': frame(
     `<rect x="430" y="520" width="340" height="280" rx="40" fill="${colours.sage}"/>

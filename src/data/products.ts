@@ -399,14 +399,14 @@ export const products: Product[] = [
     categories: ['desk-organizers', 'trays'],
     images: [
       {
-        src: '/images/products/clearpath-desk-tray.svg',
-        alt: 'Shallow desk tray in pine green with pens and cards',
+        src: '/images/products/clearpath-desk-tray.jpg',
+        alt: 'Shallow Deep Pine powder-coated steel desk tray organizing pens, cards, paper clips and daily tools',
         width: 1200,
         height: 1200,
         crop: 'square',
       },
     ],
-    imageAlt: 'Clearpath Desk Tray',
+    imageAlt: 'Clearpath Desk Tray in Deep Pine',
     variants: [
       { id: 'pine', label: 'Deep Pine', colour: 'pine', available: true },
       { id: 'sand', label: 'Warm Sand', colour: 'sand', available: true },
