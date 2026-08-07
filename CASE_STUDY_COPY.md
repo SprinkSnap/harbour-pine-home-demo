@@ -1,6 +1,6 @@
 # Harbour & Pine Home — Case Study Copy
 
-**Publish to:** https://chexustudio.com/work/harbour-pine-home
+**Publish to:** https://chexustudio.com/work/
 
 ## SEO title
 

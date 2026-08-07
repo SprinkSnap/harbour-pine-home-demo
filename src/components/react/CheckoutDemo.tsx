@@ -102,7 +102,7 @@ export default function CheckoutDemo() {
             Build My Online Store
           </a>
           <a
-            href="https://chexustudio.com/work/harbour-pine-home"
+            href="https://chexustudio.com/work/"
             className="btn btn-secondary w-full sm:w-auto"
             target="_blank"
             rel="noopener noreferrer"
