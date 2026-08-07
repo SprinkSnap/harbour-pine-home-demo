@@ -8,9 +8,9 @@ export const siteConfig = {
   description:
     'Harbour & Pine Home is a fictional Canadian home and lifestyle storefront demonstration by Che Xu Studio.',
   demoDomain: 'https://harbourandpinehome.chexustudio.com',
-  caseStudyUrl: 'https://chexustudio.com/work/harbour-pine-home',
+  caseStudyUrl: 'https://chexustudio.com/work/',
   studioUrl: 'https://chexustudio.com',
-  packagesUrl: 'https://chexustudio.com/packages',
+  packagesUrl: 'https://chexustudio.com/pricing/',
   contactEmailDisplay: 'Use the enquiry form to reach Che Xu Studio',
   portfolioNotice:
     'Portfolio concept by Che Xu Studio. Harbour & Pine Home is a fictional e-commerce demonstration.',
@@ -58,8 +58,8 @@ export const footerLinks = {
     { href: '/terms/', label: 'Terms' },
   ],
   studio: [
-    { href: 'https://chexustudio.com/work/harbour-pine-home', label: 'View Case Study', external: true },
-    { href: 'https://chexustudio.com/packages', label: 'View Packages', external: true },
+    { href: 'https://chexustudio.com/work/', label: 'View Case Study', external: true },
+    { href: 'https://chexustudio.com/pricing/', label: 'View Packages', external: true },
     { href: '/contact/', label: 'Build a Store Like This' },
   ],
 } as const;

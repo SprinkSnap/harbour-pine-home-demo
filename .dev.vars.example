@@ -3,8 +3,8 @@
 
 DEMO_MODE=true
 PUBLIC_SITE_URL=http://127.0.0.1:4321
-PUBLIC_CASE_STUDY_URL=https://chexustudio.com/work/harbour-pine-home
-PUBLIC_PACKAGES_URL=https://chexustudio.com/packages
+PUBLIC_CASE_STUDY_URL=https://chexustudio.com/work/
+PUBLIC_PACKAGES_URL=https://chexustudio.com/pricing/
 PUBLIC_STUDIO_URL=https://chexustudio.com
 ALLOWED_ORIGINS=http://127.0.0.1:4321,http://localhost:4321
 

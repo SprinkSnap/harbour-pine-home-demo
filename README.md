@@ -3,7 +3,7 @@
 Fictional Canadian home and lifestyle e-commerce demonstration by **Che Xu Studio**.
 
 - Public demo intent: `https://harbourandpinehome.chexustudio.com`
-- Case study: `https://chexustudio.com/work/harbour-pine-home`
+- Case study: `https://chexustudio.com/work/`
 - Workers: `harbour-pine-home-demo` / `harbour-pine-home-demo-staging`
 - Locale: `en-CA` · Currency: CAD
 - `DEMO_MODE=true` by default (`noindex, nofollow`)
@@ -199,7 +199,7 @@ Owner actions only:
 
 ## Case-study publishing
 
-Finished copy lives in `CASE_STUDY_COPY.md` for publishing to `https://chexustudio.com/work/harbour-pine-home`.
+Finished copy lives in `CASE_STUDY_COPY.md` for publishing to `https://chexustudio.com/work/`.
 
 ## Converting the demo for a verified real merchant
 

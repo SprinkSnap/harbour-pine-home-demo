@@ -30,8 +30,8 @@
   "vars": {
     "DEMO_MODE": "true",
     "PUBLIC_SITE_URL": "https://harbourandpinehome.chexustudio.com",
-    "PUBLIC_CASE_STUDY_URL": "https://chexustudio.com/work/harbour-pine-home",
-    "PUBLIC_PACKAGES_URL": "https://chexustudio.com/packages",
+    "PUBLIC_CASE_STUDY_URL": "https://chexustudio.com/work/",
+    "PUBLIC_PACKAGES_URL": "https://chexustudio.com/pricing/",
     "PUBLIC_STUDIO_URL": "https://chexustudio.com",
     "ALLOWED_ORIGINS": "https://harbourandpinehome.chexustudio.com,http://localhost:4321,http://127.0.0.1:4321"
   },
@@ -41,8 +41,8 @@
       "vars": {
         "DEMO_MODE": "true",
         "PUBLIC_SITE_URL": "https://harbour-pine-home-demo-staging.workers.dev",
-        "PUBLIC_CASE_STUDY_URL": "https://chexustudio.com/work/harbour-pine-home",
-        "PUBLIC_PACKAGES_URL": "https://chexustudio.com/packages",
+        "PUBLIC_CASE_STUDY_URL": "https://chexustudio.com/work/",
+        "PUBLIC_PACKAGES_URL": "https://chexustudio.com/pricing/",
         "PUBLIC_STUDIO_URL": "https://chexustudio.com",
         "ALLOWED_ORIGINS": "https://harbour-pine-home-demo-staging.workers.dev,http://localhost:4321,http://127.0.0.1:4321"
       }
